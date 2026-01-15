@@ -9,34 +9,26 @@
         <!-- Bento Image Grid -->
         <div class="location-bento">
             <div class="bento-left">
-                <picture>
-                    <source type="image/avif" srcset="/assets/media/location/glass-suite-640w.avif">
-                    <source type="image/webp" srcset="/assets/media/location/glass-suite-640w.webp">
-                    <img src="/assets/media/location/glass-suite.jpg" alt="Arctic Glass Suite at Harriniva" loading="lazy">
-                </picture>
+                {% if homepage.location_section.images.left %}
+                <img src="{{ homepage.location_section.images.left }}" alt="{{ homepage.location_section.headline }}" loading="lazy">
+                {% endif %}
             </div>
             <div class="bento-middle">
                 <div class="bento-middle-top">
-                    <picture>
-                        <source type="image/avif" srcset="/assets/media/location/restaurant-640w.avif">
-                        <source type="image/webp" srcset="/assets/media/location/restaurant-640w.webp">
-                        <img src="/assets/media/location/restaurant.jpg" alt="Harriniva Resort Restaurant" loading="lazy">
-                    </picture>
+                    {% if homepage.location_section.images.middle_top %}
+                    <img src="{{ homepage.location_section.images.middle_top }}" alt="{{ homepage.location_section.headline }}" loading="lazy">
+                    {% endif %}
                 </div>
                 <div class="bento-middle-bottom">
-                    <picture>
-                        <source type="image/avif" srcset="/assets/media/location/cabin-bedroom-640w.avif">
-                        <source type="image/webp" srcset="/assets/media/location/cabin-bedroom-640w.webp">
-                        <img src="/assets/media/location/cabin-bedroom.jpg" alt="Cozy Cabin Bedroom" loading="lazy">
-                    </picture>
+                    {% if homepage.location_section.images.middle_bottom %}
+                    <img src="{{ homepage.location_section.images.middle_bottom }}" alt="{{ homepage.location_section.headline }}" loading="lazy">
+                    {% endif %}
                 </div>
             </div>
             <div class="bento-right">
-                <picture>
-                    <source type="image/avif" srcset="/assets/media/location/winter-landscape-1080w.avif">
-                    <source type="image/webp" srcset="/assets/media/location/winter-landscape-1080w.webp">
-                    <img src="/assets/media/location/winter-landscape.jpg" alt="Winter Landscape in Finnish Lapland" loading="lazy">
-                </picture>
+                {% if homepage.location_section.images.right %}
+                <img src="{{ homepage.location_section.images.right }}" alt="{{ homepage.location_section.headline }}" loading="lazy">
+                {% endif %}
             </div>
         </div>
 
@@ -54,26 +46,36 @@
         </div>
 
         <!-- Stats -->
+        {% if homepage.location_section.stats and homepage.location_section.stats.size > 0 %}
         <div class="location-stats">
+            {% for stat in homepage.location_section.stats %}
             <div class="stat-item">
                 <div class="stat-icon">
+                    {% case stat.icon %}
+                    {% when 'plane' %}
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
-                </div>
-                <div class="stat-content">
-                    <span class="stat-number">~1 hour</span>
-                    <span class="stat-label">From Kittila Airport</span>
-                </div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon">
+                    {% when 'globe' %}
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                    {% when 'map-pin' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    {% when 'mountain' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/><path d="M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.19"/></svg>
+                    {% when 'clock' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    {% when 'building' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+                    {% else %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+                    {% endcase %}
                 </div>
                 <div class="stat-content">
-                    <span class="stat-number">68°N</span>
-                    <span class="stat-label">Arctic Circle Location</span>
+                    <span class="stat-number">{{ stat.number }}</span>
+                    <span class="stat-label">{{ stat.label }}</span>
                 </div>
             </div>
+            {% endfor %}
         </div>
+        {% endif %}
     </div>
 </section>
 

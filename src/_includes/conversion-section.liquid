@@ -21,19 +21,17 @@
             </div>
         </div>
 
+        {% if homepage.conversion_section.images and homepage.conversion_section.images.size > 0 %}
         <div class="conversion-images">
             <div class="image-collage">
-                <div class="collage-img collage-img-1">
-                    <img src="/assets/media/experiences/northern-lights.jpg" alt="Northern Lights in Lapland">
+                {% for image in homepage.conversion_section.images limit:3 %}
+                <div class="collage-img collage-img-{{ forloop.index }}">
+                    <img src="{{ image }}" alt="{{ homepage.conversion_section.headline }}" loading="lazy">
                 </div>
-                <div class="collage-img collage-img-2">
-                    <img src="/assets/media/experiences/husky-sledding.jpg" alt="Husky Sledding">
-                </div>
-                <div class="collage-img collage-img-3">
-                    <img src="/assets/media/experiences/reindeer-encounters.jpg" alt="Reindeer Encounters">
-                </div>
+                {% endfor %}
             </div>
         </div>
+        {% endif %}
     </div>
 </section>
 

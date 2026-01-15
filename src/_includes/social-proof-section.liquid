@@ -5,7 +5,9 @@
             <!-- Left: Image with overlaid card -->
             <div class="social-hero-left">
                 <div class="social-hero-bg">
-                    <img src="/assets/media/location/winter-landscape.jpg" alt="Harriniva Adventure Resort">
+                    {% if homepage.social_proof_section.background_image %}
+                    <img src="{{ homepage.social_proof_section.background_image }}" alt="{{ homepage.social_proof_section.headline }}" loading="lazy">
+                    {% endif %}
                 </div>
                 <div class="social-hero-overlay"></div>
 

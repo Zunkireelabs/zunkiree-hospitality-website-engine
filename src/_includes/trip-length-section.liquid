@@ -38,71 +38,63 @@
             </div>
             {% endfor %}
 
+            {% if homepage.trip_length_section.show_availability %}
             <!-- Availability Card -->
             <div class="trip-card availability-card">
                 <div class="trip-card-content">
-                    <h3 class="trip-card-title">2026 Dates</h3>
-                    <span class="trip-card-subtitle">Winter Season Availability</span>
+                    <h3 class="trip-card-title">{{ homepage.trip_length_section.availability.title | default: "2026 Dates" }}</h3>
+                    <span class="trip-card-subtitle">{{ homepage.trip_length_section.availability.subtitle | default: "Winter Season Availability" }}</span>
 
                     <div class="availability-dates-card">
+                        {% for month in homepage.trip_length_section.availability.months %}
                         <div class="availability-month-block">
                             <div class="availability-row">
-                                <span class="availability-month">November</span>
-                                <span class="availability-dates">28 Nov - 30 Nov</span>
+                                <span class="availability-month">{{ month.name }}</span>
+                                <span class="availability-dates">{{ month.dates }}</span>
                             </div>
                             <div class="mini-calendar">
                                 <div class="calendar-header">
                                     <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
                                 </div>
                                 <div class="calendar-grid">
-                                    <span></span><span></span><span></span><span></span><span></span><span></span><span class="available">28</span>
-                                    <span class="available">29</span><span class="available">30</span><span></span><span></span><span></span><span></span><span></span>
+                                    {% for day in month.calendar %}
+                                    {% if day == 0 %}
+                                    <span></span>
+                                    {% elsif day > 0 %}
+                                    <span class="available">{{ day }}</span>
+                                    {% else %}
+                                    <span>{{ day | abs }}</span>
+                                    {% endif %}
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
-                        <div class="availability-month-block">
-                            <div class="availability-row">
-                                <span class="availability-month">December</span>
-                                <span class="availability-dates">1 Dec - 24 Dec</span>
-                            </div>
-                            <div class="mini-calendar">
-                                <div class="calendar-header">
-                                    <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
-                                </div>
-                                <div class="calendar-grid">
-                                    <span></span><span></span><span class="available">1</span><span class="available">2</span><span class="available">3</span><span class="available">4</span><span class="available">5</span>
-                                    <span class="available">6</span><span class="available">7</span><span class="available">8</span><span class="available">9</span><span class="available">10</span><span class="available">11</span><span class="available">12</span>
-                                    <span class="available">13</span><span class="available">14</span><span class="available">15</span><span class="available">16</span><span class="available">17</span><span class="available">18</span><span class="available">19</span>
-                                    <span class="available">20</span><span class="available">21</span><span class="available">22</span><span class="available">23</span><span class="available">24</span><span></span><span></span>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
 
+                    {% if homepage.trip_length_section.availability.features %}
                     <div class="availability-features">
+                        {% for feature in homepage.trip_length_section.availability.features %}
                         <div class="feature-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>3 & 4 night options</span>
+                            <span>{{ feature }}</span>
                         </div>
-                        <div class="feature-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>Full board included</span>
-                        </div>
-                        <div class="feature-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>Arctic activities</span>
-                        </div>
+                        {% endfor %}
                     </div>
+                    {% endif %}
 
+                    {% if homepage.trip_length_section.availability.cta %}
                     <div class="trip-cta">
-                        <a href="#" class="trip-cta-button">
+                        <a href="{{ homepage.trip_length_section.availability.cta.url }}" class="trip-cta-button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg>
-                            <span>View Available Dates</span>
+                            <span>{{ homepage.trip_length_section.availability.cta.text }}</span>
                         </a>
                         <svg class="trip-cta-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </div>
+                    {% endif %}
                 </div>
             </div>
+            {% endif %}
         </div>
 
         <div class="trip-note">

@@ -1,0 +1,339 @@
+<section class="faq-section" id="faq">
+    <div class="faq-container">
+        <div class="faq-header">
+            <h2 class="faq-title">{{ homepage.faq_section.headline }}</h2>
+        </div>
+
+        <div class="faq-filters">
+            <div class="faq-categories">
+                {% for category in homepage.faq_section.categories %}
+                <button class="faq-category-btn{% if forloop.first %} active{% endif %}" data-category="{{ category }}">
+                    {{ category }}
+                </button>
+                {% endfor %}
+            </div>
+            <div class="faq-search">
+                <input type="text" class="faq-search-input" placeholder="Search Your Question">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+        </div>
+
+        <div class="faq-list">
+            {% for faq in homepage.faq_section.faqs %}
+            <div class="faq-item" data-category="{{ faq.category }}">
+                <button class="faq-question" aria-expanded="false">
+                    <span class="faq-question-text">{{ forloop.index }}. {{ faq.question }}</span>
+                    <span class="faq-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </span>
+                </button>
+                <div class="faq-answer">
+                    <p>{{ faq.answer }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+.faq-section {
+    background-color: var(--color-white);
+    padding: var(--space-12) 0;
+}
+
+.faq-container {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 0 var(--space-8);
+}
+
+.faq-header {
+    text-align: left;
+    margin-bottom: var(--space-8);
+}
+
+.faq-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: black;
+    line-height: 1.2;
+}
+
+/* Filter Bar */
+.faq-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-8);
+    gap: var(--space-4);
+}
+
+.faq-categories {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.faq-category-btn {
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 100px;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.faq-category-btn:hover {
+    border-color: rgba(0, 0, 0, 0.3);
+    color: black;
+}
+
+.faq-category-btn.active {
+    background: black;
+    border-color: black;
+    color: white;
+}
+
+.faq-search {
+    position: relative;
+    min-width: 240px;
+}
+
+.faq-search-input {
+    width: 100%;
+    padding: var(--space-2) var(--space-4);
+    padding-right: var(--space-10);
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    background: transparent;
+    font-size: var(--text-sm);
+    color: black;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.faq-search-input::placeholder {
+    color: var(--color-text-secondary);
+}
+
+.faq-search-input:focus {
+    border-color: black;
+}
+
+.faq-search svg {
+    position: absolute;
+    right: var(--space-2);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-secondary);
+    pointer-events: none;
+}
+
+.faq-item.hidden {
+    display: none;
+}
+
+.faq-list {
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.faq-item {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: none;
+}
+
+.faq-item:hover {
+    box-shadow: none;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--space-4) 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.faq-question:hover .faq-question-text {
+    color: var(--color-text-secondary);
+}
+
+.faq-question-text {
+    flex: 1;
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: black;
+    line-height: 1.5;
+    transition: color var(--transition-fast);
+}
+
+.faq-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+    transition: transform var(--transition-normal);
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+}
+
+.faq-answer p {
+    padding: 0 0 var(--space-4);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    font-size: var(--text-base);
+    margin: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .faq-section {
+        padding: var(--space-10) 0;
+    }
+
+    .faq-container {
+        padding: 0 var(--space-4);
+    }
+
+    .faq-title {
+        font-size: 2rem;
+    }
+
+    .faq-filters {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-4);
+    }
+
+    .faq-categories {
+        order: 2;
+    }
+
+    .faq-search {
+        order: 1;
+        min-width: auto;
+    }
+
+    .faq-category-btn {
+        padding: var(--space-1) var(--space-3);
+        font-size: var(--text-xs);
+    }
+
+    .faq-question {
+        padding: var(--space-4) 0;
+        gap: var(--space-3);
+    }
+
+    .faq-question-text {
+        font-size: var(--text-sm);
+    }
+
+    .faq-toggle svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .faq-answer p {
+        padding: 0 0 var(--space-4);
+        padding-right: var(--space-6);
+        font-size: var(--text-sm);
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    const categoryBtns = document.querySelectorAll('.faq-category-btn');
+    const searchInput = document.querySelector('.faq-search-input');
+
+    let currentCategory = 'All';
+    let searchTerm = '';
+
+    // Accordion toggle
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Close all other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Toggle current item
+            item.classList.toggle('active');
+            question.setAttribute('aria-expanded', !isActive);
+        });
+    });
+
+    // Filter function
+    function filterFAQs() {
+        faqItems.forEach(item => {
+            const category = item.dataset.category;
+            const questionText = item.querySelector('.faq-question-text').textContent.toLowerCase();
+            const answerText = item.querySelector('.faq-answer p').textContent.toLowerCase();
+
+            const matchesCategory = currentCategory === 'All' || category === currentCategory;
+            const matchesSearch = searchTerm === '' ||
+                questionText.includes(searchTerm) ||
+                answerText.includes(searchTerm);
+
+            if (matchesCategory && matchesSearch) {
+                item.classList.remove('hidden');
+            } else {
+                item.classList.add('hidden');
+                item.classList.remove('active');
+            }
+        });
+    }
+
+    // Category filter buttons
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = btn.dataset.category;
+            filterFAQs();
+        });
+    });
+
+    // Search input
+    searchInput.addEventListener('input', (e) => {
+        searchTerm = e.target.value.toLowerCase();
+        filterFAQs();
+    });
+});
+</script>

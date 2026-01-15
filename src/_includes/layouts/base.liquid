@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% if env == 'development' %}
+    <!-- Prevent search engine indexing in development -->
+    <meta name="robots" content="noindex, nofollow">
+    {% endif %}
+
+    <title>{{ title | default: site.name }}</title>
+    <meta name="description" content="{{ description | default: site.description }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="/assets/media/logo-dark.jpeg">
+
+    <!-- Google Fonts - Inter (Bold Editorial Style) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Global CSS - loaded in specificity order -->
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="/assets/css/typography.css">
+    <link rel="stylesheet" href="/assets/css/layout.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/utilities.css">
+
+    {% if hasHlsVideos %}
+    {% include "hls-init.liquid" %}
+    {% endif %}
+</head>
+<body>
+    {% include "header.liquid" %}
+
+    <main>
+        {{ content }}
+    </main>
+
+    {% include "footer.liquid" %}
+</body>
+</html>

@@ -1,0 +1,290 @@
+<section class="conversion-section" id="quote">
+    <div class="conversion-container">
+        <div class="conversion-content">
+            <h2 class="conversion-title">{{ homepage.conversion_section.headline }}</h2>
+            <p class="conversion-intro">{{ homepage.conversion_section.intro }}</p>
+
+            <div class="conversion-card">
+                <a href="{{ homepage.conversion_section.cta.url }}" class="conversion-cta">
+                    <span>{{ homepage.conversion_section.cta.text }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+
+                <ul class="conversion-reassurance">
+                    {% for point in homepage.conversion_section.reassurance %}
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>{{ point }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="conversion-images">
+            <div class="image-collage">
+                <div class="collage-img collage-img-1">
+                    <img src="/assets/media/experiences/northern-lights.jpg" alt="Northern Lights in Lapland">
+                </div>
+                <div class="collage-img collage-img-2">
+                    <img src="/assets/media/experiences/husky-sledding.jpg" alt="Husky Sledding">
+                </div>
+                <div class="collage-img collage-img-3">
+                    <img src="/assets/media/experiences/reindeer-encounters.jpg" alt="Reindeer Encounters">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.conversion-section {
+    background-color: var(--color-frost);
+    background-image: url('https://img-strapi.vistarooms.com/strapi/Desk_8a143ac32d.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: var(--space-16) 0;
+}
+
+.conversion-container {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 0 var(--space-8);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: center;
+}
+
+.conversion-content {
+    max-width: 550px;
+}
+
+.conversion-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: black;
+    margin-bottom: var(--space-4);
+    line-height: 1.2;
+}
+
+.conversion-intro {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-8);
+    line-height: 1.7;
+}
+
+.conversion-card {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.conversion-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    width: 100%;
+    padding: var(--space-4) var(--space-6);
+    background: black;
+    color: white;
+    font-size: var(--text-base);
+    font-weight: 600;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    margin-bottom: var(--space-4);
+}
+
+.conversion-cta:hover {
+    background: #1a1a1a;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.conversion-cta svg {
+    transition: transform var(--transition-fast);
+}
+
+.conversion-cta:hover svg {
+    transform: translateX(4px);
+}
+
+.conversion-reassurance {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.conversion-reassurance li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.conversion-reassurance li svg {
+    color: #16a34a;
+    flex-shrink: 0;
+}
+
+.conversion-reassurance li span {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+/* Image Collage */
+.conversion-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-collage {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    height: 420px;
+}
+
+.collage-img {
+    position: absolute;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.collage-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.collage-img-1 {
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 180px;
+    z-index: 3;
+}
+
+.collage-img-2 {
+    top: 80px;
+    left: 0;
+    width: 220px;
+    height: 200px;
+    z-index: 2;
+}
+
+.collage-img-3 {
+    bottom: 0;
+    right: 40px;
+    width: 200px;
+    height: 180px;
+    z-index: 1;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .conversion-container {
+        gap: var(--space-8);
+    }
+
+    .image-collage {
+        max-width: 380px;
+        height: 350px;
+    }
+
+    .collage-img-1 {
+        width: 160px;
+        height: 150px;
+    }
+
+    .collage-img-2 {
+        width: 180px;
+        height: 170px;
+        top: 60px;
+    }
+
+    .collage-img-3 {
+        width: 160px;
+        height: 150px;
+        right: 20px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .conversion-section {
+        padding: var(--space-12) 0;
+    }
+
+    .conversion-container {
+        grid-template-columns: 1fr;
+        padding: 0 var(--space-4);
+        gap: var(--space-10);
+    }
+
+    .conversion-content {
+        max-width: none;
+        text-align: center;
+    }
+
+    .conversion-title {
+        font-size: 2rem;
+    }
+
+    .conversion-intro {
+        font-size: var(--text-base);
+        margin-bottom: var(--space-6);
+    }
+
+    .conversion-card {
+        padding: var(--space-5);
+    }
+
+    .conversion-cta {
+        padding: var(--space-3) var(--space-5);
+    }
+
+    .conversion-reassurance {
+        gap: var(--space-3);
+    }
+
+    .conversion-images {
+        order: -1;
+    }
+
+    .image-collage {
+        max-width: 320px;
+        height: 300px;
+        margin: 0 auto;
+    }
+
+    .collage-img-1 {
+        width: 140px;
+        height: 130px;
+    }
+
+    .collage-img-2 {
+        width: 160px;
+        height: 150px;
+        top: 50px;
+    }
+
+    .collage-img-3 {
+        width: 140px;
+        height: 130px;
+        right: 10px;
+    }
+}
+</style>

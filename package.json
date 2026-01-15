@@ -1,0 +1,12 @@
+{
+  "name": "zunkire-hospitality-website-engine",
+  "version": "1.0.0",
+  "description": "Shared template engine for Zunkire hospitality websites",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Template repo - use in project repos\""
+  },
+  "keywords": ["eleventy", "template", "hospitality"],
+  "author": "Zunkire Labs",
+  "license": "UNLICENSED"
+}

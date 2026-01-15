@@ -1,0 +1,479 @@
+<section class="trip-section" id="trip-length">
+    <div class="trip-container">
+        <div class="trip-header">
+            <h2 class="trip-title">{{ homepage.trip_length_section.headline }}</h2>
+            <p class="trip-intro">{{ homepage.trip_length_section.intro }}</p>
+        </div>
+
+        <div class="trip-options">
+            {% for option in homepage.trip_length_section.options %}
+            <div class="trip-card">
+                <div class="trip-card-image">
+                    <img src="{{ option.image }}" alt="{{ option.title }}">
+                </div>
+                <div class="trip-card-content">
+                <h3 class="trip-card-title">{{ option.title }}</h3>
+                <span class="trip-card-subtitle">{{ option.subtitle }}</span>
+
+                <p class="trip-card-desc">{{ option.description }}</p>
+
+                <div class="trip-ideal-for">
+                    <span class="trip-ideal-label">Ideal for</span>
+                    <ul class="trip-ideal-list">
+                        {% assign ideal_items = option.ideal_for | split: ', ' %}
+                        {% for item in ideal_items %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="trip-cta">
+                    <a href="/request-quote" class="trip-cta-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg>
+                        <span>Request a Quote</span>
+                    </a>
+                    <svg class="trip-cta-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Availability Card -->
+            <div class="trip-card availability-card">
+                <div class="trip-card-content">
+                    <h3 class="trip-card-title">2026 Dates</h3>
+                    <span class="trip-card-subtitle">Winter Season Availability</span>
+
+                    <div class="availability-dates-card">
+                        <div class="availability-month-block">
+                            <div class="availability-row">
+                                <span class="availability-month">November</span>
+                                <span class="availability-dates">28 Nov - 30 Nov</span>
+                            </div>
+                            <div class="mini-calendar">
+                                <div class="calendar-header">
+                                    <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                                </div>
+                                <div class="calendar-grid">
+                                    <span></span><span></span><span></span><span></span><span></span><span></span><span class="available">28</span>
+                                    <span class="available">29</span><span class="available">30</span><span></span><span></span><span></span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="availability-month-block">
+                            <div class="availability-row">
+                                <span class="availability-month">December</span>
+                                <span class="availability-dates">1 Dec - 24 Dec</span>
+                            </div>
+                            <div class="mini-calendar">
+                                <div class="calendar-header">
+                                    <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                                </div>
+                                <div class="calendar-grid">
+                                    <span></span><span></span><span class="available">1</span><span class="available">2</span><span class="available">3</span><span class="available">4</span><span class="available">5</span>
+                                    <span class="available">6</span><span class="available">7</span><span class="available">8</span><span class="available">9</span><span class="available">10</span><span class="available">11</span><span class="available">12</span>
+                                    <span class="available">13</span><span class="available">14</span><span class="available">15</span><span class="available">16</span><span class="available">17</span><span class="available">18</span><span class="available">19</span>
+                                    <span class="available">20</span><span class="available">21</span><span class="available">22</span><span class="available">23</span><span class="available">24</span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="availability-features">
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>3 & 4 night options</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Full board included</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Arctic activities</span>
+                        </div>
+                    </div>
+
+                    <div class="trip-cta">
+                        <a href="#" class="trip-cta-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg>
+                            <span>View Available Dates</span>
+                        </a>
+                        <svg class="trip-cta-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="trip-note">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <p>{{ homepage.trip_length_section.note }}</p>
+        </div>
+    </div>
+</section>
+
+<style>
+.trip-section {
+    background-color: var(--color-white);
+    padding: var(--space-12) 0;
+}
+
+.trip-container {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 0 var(--space-8);
+}
+
+.trip-header {
+    text-align: left;
+    margin-bottom: var(--space-10);
+}
+
+.trip-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: black;
+    margin-bottom: var(--space-3);
+    line-height: 1.2;
+}
+
+.trip-intro {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    max-width: 500px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.trip-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    margin-bottom: var(--space-10);
+}
+
+.trip-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    text-align: left;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.trip-card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.trip-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.trip-card-content {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.trip-card-title {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: black;
+    margin-bottom: var(--space-1);
+}
+
+.trip-card-subtitle {
+    display: block;
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-5);
+}
+
+.trip-card-desc {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.trip-ideal-for {
+    text-align: left;
+    margin-bottom: var(--space-6);
+}
+
+.trip-ideal-label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: black;
+    margin-bottom: var(--space-3);
+}
+
+.trip-ideal-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.trip-ideal-list li {
+    position: relative;
+    padding-left: var(--space-5);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+}
+
+.trip-ideal-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    background: black;
+    border-radius: 50%;
+}
+
+.trip-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: var(--space-6);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.trip-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: black;
+    color: white;
+    padding: var(--space-3) var(--space-5);
+    border-radius: 10px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.trip-cta-button:hover {
+    color: white;
+}
+
+.trip-cta-button svg {
+    width: 18px;
+    height: 18px;
+    color: #FDD5A9;
+}
+
+.trip-cta-arrow {
+    color: black;
+}
+
+/* Availability Card Styles */
+.availability-card {
+    background: #FDF8F3;
+}
+
+.availability-card .trip-card-content {
+    padding: var(--space-6);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.availability-card .trip-card-title {
+    margin-bottom: 0;
+}
+
+.availability-card .trip-card-subtitle {
+    margin-bottom: var(--space-4);
+}
+
+.availability-dates-card {
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: var(--space-4);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.availability-month-block {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.availability-month-block:last-child {
+    border-bottom: none;
+}
+
+.availability-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-frost);
+}
+
+.availability-month {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: black;
+}
+
+.availability-dates {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+}
+
+.mini-calendar {
+    padding: var(--space-2) var(--space-3);
+}
+
+.calendar-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    margin-bottom: var(--space-1);
+}
+
+.calendar-header span {
+    text-align: center;
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+}
+
+.calendar-grid span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    font-size: 10px;
+    color: var(--color-text-secondary);
+    border-radius: 3px;
+}
+
+.calendar-grid span.available {
+    background: rgba(34, 197, 94, 0.15);
+    color: #16a34a;
+    font-weight: 500;
+}
+
+.availability-features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-bottom: 0;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.feature-item svg {
+    color: black;
+    flex-shrink: 0;
+}
+
+.feature-item span {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+}
+
+.trip-note {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    max-width: 900px;
+    padding: var(--space-4) 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.trip-note svg {
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.trip-note p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+    .trip-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .availability-card {
+        grid-column: span 2;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .trip-options {
+        grid-template-columns: 1fr;
+    }
+
+    .availability-card {
+        grid-column: span 1;
+        max-width: none;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .trip-section {
+        padding: var(--space-10) 0;
+    }
+
+    .trip-container {
+        padding: 0 var(--space-4);
+    }
+
+    .trip-title {
+        font-size: 2rem;
+    }
+
+    .trip-intro {
+        font-size: var(--text-base);
+    }
+
+    .trip-card-image {
+        height: 160px;
+    }
+
+    .trip-card-content {
+        padding: var(--space-5);
+    }
+
+    .trip-card-title {
+        font-size: var(--text-lg);
+    }
+
+    .trip-cta-button {
+        padding: var(--space-2) var(--space-4);
+    }
+}
+</style>

@@ -1,0 +1,661 @@
+<section class="hero" id="hero">
+    <div class="hero-media">
+        <div class="hero-image-placeholder"></div>
+        <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-content container">
+        <h1 class="hero-headline">{{ homepage.hero.headline }}</h1>
+        <p class="hero-tagline">{{ homepage.hero.tagline }}</p>
+    </div>
+
+    <!-- Search Bar - OUTSIDE hero-content so it positions relative to .hero -->
+    <div class="hero-search-bar">
+            <div class="search-bar-inner">
+                <!-- Experience Field -->
+                <div class="search-field" data-field="experience">
+                    <span class="search-field-text">Any experience</span>
+                    <svg class="search-field-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l1.09 3.26L16 6l-2.91.74L12 10l-1.09-3.26L8 6l2.91-.74L12 2z"/><path d="m5 15-1.5 4.5L8 18l-1.5 4.5"/><path d="m19 15 1.5 4.5L16 18l1.5 4.5"/></svg>
+                    <div class="search-dropdown">
+                        <div class="dropdown-header">Select Experiences</div>
+                        <label class="dropdown-item"><span class="item-icon">🏠</span> Glass cabins <input type="checkbox"><span class="checkmark"></span></label>
+                        <label class="dropdown-item"><span class="item-icon">🐕</span> Husky sledding <input type="checkbox"><span class="checkmark"></span></label>
+                        <label class="dropdown-item"><span class="item-icon">🦌</span> Reindeer safari <input type="checkbox"><span class="checkmark"></span></label>
+                        <label class="dropdown-item"><span class="item-icon">🌌</span> Northern Lights <input type="checkbox"><span class="checkmark"></span></label>
+                        <label class="dropdown-item"><span class="item-icon">🛷</span> Snowmobiling <input type="checkbox"><span class="checkmark"></span></label>
+                        <label class="dropdown-item"><span class="item-icon">🎅</span> Meet Santa <input type="checkbox"><span class="checkmark"></span></label>
+                        <div class="dropdown-actions">
+                            <button type="button" class="btn-clear">Clear</button>
+                            <button type="button" class="btn-apply">Apply</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Month Field -->
+                <div class="search-field" data-field="month">
+                    <span class="search-field-text">Any month</span>
+                    <svg class="search-field-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                    <div class="search-dropdown">
+                        <div class="dropdown-header">Select Month</div>
+                        <label class="dropdown-item">November 2026 <input type="checkbox"><span class="checkmark"></span></label>
+                        <label class="dropdown-item">December 2026 <input type="checkbox"><span class="checkmark"></span></label>
+                        <div class="dropdown-actions">
+                            <button type="button" class="btn-clear">Clear</button>
+                            <button type="button" class="btn-apply">Apply</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Airport Field -->
+                <div class="search-field" data-field="airport">
+                    <span class="search-field-text">Any airport</span>
+                    <svg class="search-field-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+                    <div class="search-dropdown">
+                        <div class="dropdown-header">Select Airport</div>
+                        <label class="dropdown-item">London Gatwick <input type="checkbox"><span class="checkmark"></span></label>
+                        <label class="dropdown-item">London Heathrow <input type="checkbox"><span class="checkmark"></span></label>
+                        <label class="dropdown-item">Manchester <input type="checkbox"><span class="checkmark"></span></label>
+                        <div class="dropdown-actions">
+                            <button type="button" class="btn-clear">Clear</button>
+                            <button type="button" class="btn-apply">Apply</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Travelers Field -->
+                <div class="search-field" data-field="travelers">
+                    <span class="search-field-text">Travelers</span>
+                    <svg class="search-field-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <div class="search-dropdown travelers-dropdown">
+                        <div class="dropdown-header">Travelers</div>
+                        <div class="traveler-row">
+                            <div class="traveler-info">
+                                <span class="traveler-type">Adults</span>
+                                <span class="traveler-desc">Ages 13+</span>
+                            </div>
+                            <div class="traveler-counter">
+                                <button type="button" class="counter-btn minus" data-type="adults">−</button>
+                                <span class="counter-value" data-type="adults">2</span>
+                                <button type="button" class="counter-btn plus" data-type="adults">+</button>
+                            </div>
+                        </div>
+                        <div class="traveler-row">
+                            <div class="traveler-info">
+                                <span class="traveler-type">Children</span>
+                                <span class="traveler-desc">Ages 2-12</span>
+                            </div>
+                            <div class="traveler-counter">
+                                <button type="button" class="counter-btn minus" data-type="children">−</button>
+                                <span class="counter-value" data-type="children">0</span>
+                                <button type="button" class="counter-btn plus" data-type="children">+</button>
+                            </div>
+                        </div>
+                        <div class="traveler-row">
+                            <div class="traveler-info">
+                                <span class="traveler-type">Infants</span>
+                                <span class="traveler-desc">Under 2</span>
+                            </div>
+                            <div class="traveler-counter">
+                                <button type="button" class="counter-btn minus" data-type="infants">−</button>
+                                <span class="counter-value" data-type="infants">0</span>
+                                <button type="button" class="counter-btn plus" data-type="infants">+</button>
+                            </div>
+                        </div>
+                        <div class="dropdown-actions">
+                            <button type="button" class="btn-clear">Clear</button>
+                            <button type="button" class="btn-apply">Apply</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Button -->
+                <a href="/request-quote" class="search-btn">Search tours</a>
+            </div>
+            <!-- Helper Row -->
+            <div class="search-helper-row">
+                <p class="helper-text">Finding your ideal experience should be easy, we're here to help!</p>
+                <a href="tel:+441234567890" class="helper-callback">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span>Request Callback</span>
+                </a>
+            </div>
+        </div>
+</section>
+
+<style>
+.hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    margin-top: -90px;
+    padding: 90px 0 50px 0; /* Override global section padding - top accounts for header, bottom for search bar */
+}
+
+.hero-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+.hero-image-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/media/hero-bg.jpg') center/cover no-repeat;
+    background-color: var(--color-arctic);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-8);
+}
+
+.hero-headline {
+    font-size: 4rem;
+    font-weight: var(--font-bold);
+    font-style: normal;
+    color: var(--color-white);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-align: left;
+    max-width: 700px;
+    margin: 0 0 var(--space-4) 0;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-tagline {
+    font-size: var(--text-xl);
+    font-weight: var(--font-normal);
+    color: var(--color-white);
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0.95;
+}
+
+/* ============================================
+   Hero Search Bar - Nordic Visitor Style
+   ============================================ */
+.hero-search-bar {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: calc(100% - var(--space-8) * 2);
+    max-width: var(--container-2xl);
+    z-index: 10;
+}
+
+.search-bar-inner {
+    display: flex;
+    align-items: stretch;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--color-white);
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Helper Row */
+.search-helper-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-4);
+    background-color: #FDF8F3;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+}
+
+.helper-text {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.helper-callback {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+}
+
+.helper-callback:hover {
+    opacity: 0.8;
+}
+
+.helper-callback svg {
+    flex-shrink: 0;
+}
+
+.search-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    padding: var(--space-4) var(--space-4);
+    background-color: #F5F5F5;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    min-height: 60px;
+}
+
+.search-field:hover {
+    background-color: #EFEFEF;
+}
+
+.search-field.active {
+    border-color: var(--color-arctic);
+    background-color: var(--color-white);
+}
+
+.search-field-text {
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    color: var(--color-gray-600);
+}
+
+.search-field-icon {
+    color: var(--color-gray-500);
+    flex-shrink: 0;
+    order: 2;
+    margin-left: var(--space-2);
+}
+
+.search-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    color: var(--color-white);
+    padding: var(--space-4) var(--space-6);
+    border-radius: 10px;
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+    min-height: 60px;
+}
+
+.search-btn:hover {
+    background-color: #333333;
+}
+
+/* ============================================
+   Search Dropdowns - Checkbox Style
+   ============================================ */
+.search-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 260px;
+    background: var(--color-white);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--transition-fast);
+    z-index: 100;
+    overflow: hidden;
+}
+
+.search-field.active .search-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-header {
+    padding: var(--space-4) var(--space-4) var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--color-gray-100);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    cursor: pointer;
+    font-size: var(--text-base);
+    color: var(--color-text-primary);
+    transition: background-color var(--transition-fast);
+    position: relative;
+}
+
+.dropdown-item:hover {
+    background-color: var(--color-frost);
+}
+
+.dropdown-item .item-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.dropdown-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.dropdown-item .checkmark {
+    position: relative;
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-gray-300);
+    border-radius: 4px;
+    flex-shrink: 0;
+    transition: all var(--transition-fast);
+}
+
+.dropdown-item .checkmark::after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.dropdown-item input[type="checkbox"]:checked ~ .checkmark {
+    background-color: #1E3A5F;
+    border-color: #1E3A5F;
+}
+
+.dropdown-item input[type="checkbox"]:checked ~ .checkmark::after {
+    display: block;
+}
+
+.dropdown-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+    border-top: 1px solid var(--color-gray-100);
+    background-color: var(--color-frost);
+}
+
+.btn-clear {
+    background: none;
+    border: none;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--color-gray-600);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.btn-clear:hover {
+    color: var(--color-text-primary);
+}
+
+.btn-apply {
+    background-color: #1E3A5F;
+    border: none;
+    padding: var(--space-2) var(--space-5);
+    border-radius: 6px;
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--color-white);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.btn-apply:hover {
+    background-color: #2A4A73;
+}
+
+/* Travelers Dropdown */
+.travelers-dropdown {
+    min-width: 280px;
+}
+
+.traveler-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-gray-100);
+}
+
+.traveler-row:last-of-type {
+    border-bottom: none;
+}
+
+.traveler-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.traveler-type {
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    color: var(--color-text-primary);
+}
+
+.traveler-desc {
+    font-size: var(--text-xs);
+    color: var(--color-gray-500);
+}
+
+.traveler-counter {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.counter-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--color-gray-300);
+    background: var(--color-white);
+    color: var(--color-text-primary);
+    font-size: var(--text-lg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.counter-btn:hover {
+    border-color: #1E3A5F;
+    color: #1E3A5F;
+}
+
+.counter-value {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    min-width: 24px;
+    text-align: center;
+    color: var(--color-text-primary);
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .hero-headline {
+        font-size: 3rem;
+    }
+
+    .search-bar-inner {
+        flex-wrap: wrap;
+        gap: var(--space-2);
+    }
+
+    .search-field {
+        flex: 0 0 calc(50% - var(--space-1));
+    }
+
+    .search-btn {
+        flex: 1 1 100%;
+        margin-top: var(--space-1);
+    }
+
+    .search-dropdown {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.95);
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .search-field.active .search-dropdown {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hero {
+        min-height: auto;
+    }
+
+    .hero-content {
+        padding-top: 100px;
+        padding-bottom: var(--space-8);
+    }
+
+    .hero-headline {
+        font-size: 2.25rem;
+        margin-bottom: var(--space-3);
+    }
+
+    .hero-tagline {
+        font-size: var(--text-base);
+        margin-bottom: var(--space-4);
+    }
+
+    .hero-search-bar {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        padding: 0 var(--space-4);
+        margin-top: var(--space-8);
+        border-radius: 12px;
+    }
+
+    .search-bar-inner {
+        flex-direction: column;
+        padding: var(--space-3);
+    }
+
+    .search-field {
+        flex: 1 1 100%;
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .search-btn {
+        margin-top: var(--space-1);
+        border-radius: 8px;
+    }
+
+    .search-helper-row {
+        flex-direction: column;
+        gap: var(--space-2);
+        text-align: center;
+        padding: var(--space-3);
+    }
+
+    .helper-text {
+        font-size: var(--text-xs);
+    }
+
+    .search-dropdown {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: translateY(100%);
+        width: 100%;
+        max-width: none;
+        border-radius: 16px 16px 0 0;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+
+    .search-field.active .search-dropdown {
+        transform: translateY(0);
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Search field dropdowns
+    const searchFields = document.querySelectorAll('.search-field');
+
+    function closeAllDropdowns() {
+        searchFields.forEach(field => field.classList.remove('active'));
+    }
+
+    searchFields.forEach(field => {
+        field.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const wasActive = this.classList.contains('active');
+            closeAllDropdowns();
+            if (!wasActive) {
+                this.classList.add('active');
+            }
+        });
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.search-field')) {
+            closeAllDropdowns();
+        }
+    });
+});
+</script>

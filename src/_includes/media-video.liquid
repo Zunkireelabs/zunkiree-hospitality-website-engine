@@ -1,0 +1,43 @@
+{%- comment -%}
+  Media Video Component
+
+  Usage:
+    {% include "media-video.liquid" section="hero" name="homepage" autoplay=true loop=true muted=true class="hero-video" %}
+    {% include "media-video.liquid" section="activities" name="husky-sledding" controls=true %}
+
+  Parameters:
+    - section: Media section in media.json (e.g., "hero", "activities", "testimonials")
+    - name: Video name within section (e.g., "homepage", "husky-sledding")
+    - autoplay: Auto-start playback (default: false)
+    - loop: Loop video (default: false)
+    - muted: Mute audio - required for autoplay (default: false)
+    - controls: Show player controls (default: false)
+    - playsinline: Play inline on mobile (default: true)
+    - class: CSS class(es) to apply
+    - style: Inline styles
+    - id: Optional element ID
+{%- endcomment -%}
+
+{%- assign video_section = media[section] -%}
+{%- assign video_data = video_section[name] -%}
+
+{%- if video_data and video_data.type == "video" and video_data.hls != "" -%}
+<video
+    {%- if id %} id="{{ id }}"{% endif %}
+    {%- if class %} class="{{ class }}"{% endif %}
+    {%- if style %} style="{{ style }}"{% endif %}
+    {%- if controls %} controls{% endif %}
+    {%- if autoplay %} autoplay{% endif %}
+    {%- if loop %} loop{% endif %}
+    {%- if muted %} muted{% endif %}
+    {%- unless playsinline == false %} playsinline{% endunless %}
+    preload="metadata"
+    {%- if video_data.thumbnail != "" %} poster="{{ video_data.thumbnail }}"{% endif %}>
+    <source src="{{ video_data.hls }}" type="application/x-mpegURL">
+    Your browser does not support video playback.
+</video>
+{%- elsif video_data -%}
+<!-- Video "{{ section }}.{{ name }}" not configured - HLS URL is empty -->
+{%- else -%}
+<!-- Video "{{ section }}.{{ name }}" not found in media.json -->
+{%- endif -%}

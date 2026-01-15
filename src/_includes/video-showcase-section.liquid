@@ -1,0 +1,172 @@
+<section class="video-showcase-section" id="video">
+    <div class="video-showcase-container">
+        <h2 class="video-showcase-title">Experience Lapland</h2>
+
+        <div class="video-wrapper">
+            <video
+                id="showcase-video"
+                class="showcase-video"
+                poster="{{ media.showcase['lapland-experience'].thumbnail }}"
+                playsinline
+                preload="metadata"
+            >
+                <source src="{{ media.showcase['lapland-experience'].hls }}" type="application/x-mpegURL">
+            </video>
+
+            <button class="video-play-btn" aria-label="Play video">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<style>
+.video-showcase-section {
+    background-color: var(--color-white);
+    padding: var(--space-12) 0;
+}
+
+.video-showcase-container {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 0 var(--space-8);
+}
+
+.video-showcase-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: black;
+    margin-bottom: var(--space-8);
+    line-height: 1.2;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: black;
+    aspect-ratio: 16/9;
+}
+
+.showcase-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    transition: all var(--transition-normal);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.video-play-btn svg {
+    margin-left: 4px;
+}
+
+.video-play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+}
+
+.video-play-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .video-showcase-section {
+        padding: var(--space-10) 0;
+    }
+
+    .video-showcase-container {
+        padding: 0 var(--space-4);
+    }
+
+    .video-showcase-title {
+        font-size: 2rem;
+    }
+
+    .video-play-btn {
+        width: 64px;
+        height: 64px;
+    }
+
+    .video-play-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('showcase-video');
+    const playBtn = document.querySelector('.video-play-btn');
+
+    if (!video || !playBtn) return;
+
+    // Initialize HLS if needed
+    function initVideo() {
+        const hlsSource = video.querySelector('source[type="application/x-mpegURL"]');
+        if (!hlsSource) return;
+
+        const hlsUrl = hlsSource.src;
+
+        if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            // Safari - native HLS support
+            video.src = hlsUrl;
+        } else if (typeof Hls !== 'undefined' && Hls.isSupported()) {
+            // Other browsers - use HLS.js
+            const hls = new Hls({
+                enableWorker: true,
+                startLevel: -1,
+                capLevelToPlayerSize: true
+            });
+            hls.loadSource(hlsUrl);
+            hls.attachMedia(video);
+        }
+    }
+
+    // Play button click
+    playBtn.addEventListener('click', function() {
+        initVideo();
+        video.controls = true;
+        video.muted = false;
+        video.play();
+        playBtn.classList.add('hidden');
+    });
+
+    // Show play button when video ends or pauses
+    video.addEventListener('ended', function() {
+        playBtn.classList.remove('hidden');
+        video.controls = false;
+    });
+
+    video.addEventListener('pause', function() {
+        if (video.currentTime > 0 && !video.ended) {
+            playBtn.classList.remove('hidden');
+        }
+    });
+
+    video.addEventListener('play', function() {
+        playBtn.classList.add('hidden');
+    });
+});
+</script>

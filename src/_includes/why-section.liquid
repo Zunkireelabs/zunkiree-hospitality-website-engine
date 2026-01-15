@@ -1,0 +1,236 @@
+<section class="why-section" id="why">
+    <div class="why-container">
+        <div class="why-header">
+            <h2 class="why-title">{{ homepage.why_section.headline }}</h2>
+            <p class="why-intro">{{ homepage.why_section.intro }}</p>
+        </div>
+
+        <p class="why-subheadline">{{ homepage.why_section.subheadline }}</p>
+
+        <div class="why-grid">
+            {% for benefit in homepage.why_section.benefits %}
+            <div class="why-card why-card-{{ forloop.index }}">
+                <div class="why-card-bg"></div>
+                <div class="why-card-content">
+                    <div class="why-card-icon">
+                        {% if forloop.index == 1 %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+                        {% elsif forloop.index == 2 %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 10-4 4-4-4"/></svg>
+                        {% elsif forloop.index == 3 %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        {% elsif forloop.index == 4 %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        {% endif %}
+                    </div>
+                    <h3 class="why-card-title">{{ benefit.title }}</h3>
+                    <p class="why-card-desc">{{ benefit.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+.why-section {
+    background-color: var(--color-white);
+    padding: var(--space-12) 0;
+    margin-top: var(--space-12);
+}
+
+.why-container {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 0 var(--space-8);
+}
+
+.why-header {
+    text-align: left;
+    margin-bottom: var(--space-6);
+}
+
+.why-title {
+    font-size: 2.5rem;
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    font-style: normal;
+}
+
+.why-intro {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.why-subheadline {
+    text-align: left;
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-8);
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+    margin-bottom: var(--space-10);
+}
+
+.why-card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    text-align: center;
+    min-height: 280px;
+}
+
+.why-card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform var(--transition-normal);
+}
+
+.why-card-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 100%);
+    transition: background var(--transition-normal);
+}
+
+/* Background images for each card */
+/* Card 1: Full-board comfort - cozy dining */
+.why-card-1 .why-card-bg {
+    background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80');
+}
+
+/* Card 2: Guided Arctic experiences - husky sledding */
+.why-card-2 .why-card-bg {
+    background-image: url('https://images.unsplash.com/photo-1551524559-8af4e6624178?w=600&q=80');
+}
+
+/* Card 3: Authentic base - snowy cabin in Lapland */
+.why-card-3 .why-card-bg {
+    background-image: url('https://images.unsplash.com/photo-1482192505345-5655af888cc4?w=600&q=80');
+}
+
+/* Card 4: Practical support - family in winter gear */
+.why-card-4 .why-card-bg {
+    background-image: url('https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=600&q=80');
+}
+
+.why-card:hover .why-card-bg {
+    transform: scale(1.05);
+}
+
+.why-card:hover .why-card-bg::after {
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 100%);
+}
+
+.why-card-content {
+    position: relative;
+    z-index: 1;
+    padding: var(--space-6);
+}
+
+.why-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.why-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--space-4);
+    background-color: rgba(135, 28, 83, 0.9);
+    border-radius: 50%;
+    color: var(--color-white);
+}
+
+.why-card-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--color-white);
+    margin-bottom: var(--space-2);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.why-card-desc {
+    font-size: var(--text-sm);
+    color: var(--color-white);
+    line-height: 1.6;
+    margin: 0;
+    font-weight: var(--font-medium);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 1024px) {
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .why-section {
+        padding: var(--space-10) 0;
+        margin-top: var(--space-8);
+    }
+
+    .why-container {
+        padding: 0 var(--space-4);
+    }
+
+    .why-title {
+        font-size: 2rem;
+    }
+
+    .why-intro {
+        font-size: var(--text-base);
+    }
+
+    .why-subheadline {
+        font-size: var(--text-sm);
+        margin-bottom: var(--space-6);
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+
+    .why-card {
+        min-height: 220px;
+    }
+
+    .why-card-content {
+        padding: var(--space-5);
+    }
+
+    .why-card-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .why-card-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+</style>

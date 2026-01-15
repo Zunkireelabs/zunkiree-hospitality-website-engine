@@ -1,0 +1,287 @@
+/* Typography Styles - Lapland Famille */
+/* Clean, Professional Type System with Museo Sans */
+
+/* ============================================
+   Headings
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-snug);
+    color: var(--color-text-primary);
+}
+
+h1 {
+    font-size: var(--text-6xl);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.03em;
+}
+
+h2 {
+    font-size: var(--text-5xl);
+    letter-spacing: -0.02em;
+}
+
+h3 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-semibold);
+    letter-spacing: -0.01em;
+}
+
+h4 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-semibold);
+}
+
+h5 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+}
+
+h6 {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+}
+
+/* ============================================
+   Body Text
+   ============================================ */
+p {
+    font-size: var(--text-base);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+}
+
+.lead {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+}
+
+.small {
+    font-size: var(--text-sm);
+}
+
+.caption {
+    font-size: var(--text-xs);
+    font-weight: var(--font-medium);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+}
+
+/* ============================================
+   Links
+   ============================================ */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-primary-light);
+}
+
+/* Underline link style */
+.link-underline {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.link-underline:hover {
+    text-decoration-color: var(--color-primary-light);
+}
+
+/* ============================================
+   Lists
+   ============================================ */
+ul, ol {
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+}
+
+ul li, ol li {
+    margin-bottom: var(--space-2);
+}
+
+ul li:last-child,
+ol li:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   Section Title Classes
+   ============================================ */
+.section-title {
+    font-family: var(--font-primary);
+    font-size: var(--text-5xl);
+    font-weight: var(--font-bold);
+    color: var(--color-text-primary);
+    line-height: var(--leading-snug);
+    margin-bottom: var(--space-4);
+}
+
+.section-subtitle {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+}
+
+.section-description {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    max-width: 700px;
+    line-height: var(--leading-relaxed);
+}
+
+.section-description.text-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ============================================
+   Display Text (Large Headlines)
+   ============================================ */
+.display-1 {
+    font-size: 4.5rem;
+    font-weight: var(--font-bold);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+}
+
+.display-2 {
+    font-size: 4rem;
+    font-weight: var(--font-bold);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+/* ============================================
+   Text Modifiers
+   ============================================ */
+.text-balance {
+    text-wrap: balance;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============================================
+   Dark Background Typography
+   ============================================ */
+.section-dark h1,
+.section-dark h2,
+.section-dark h3,
+.section-dark h4,
+.section-dark h5,
+.section-dark h6 {
+    color: var(--color-white);
+}
+
+.section-dark p,
+.section-dark .lead,
+.section-dark .section-description {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.section-dark .section-subtitle {
+    color: var(--color-golden);
+}
+
+.section-dark a {
+    color: var(--color-white);
+}
+
+.section-dark a:hover {
+    color: var(--color-golden);
+}
+
+/* ============================================
+   Responsive Typography
+   ============================================ */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: var(--text-5xl);
+    }
+
+    h2 {
+        font-size: var(--text-4xl);
+    }
+
+    .section-title {
+        font-size: var(--text-4xl);
+    }
+
+    .display-1 {
+        font-size: 3.5rem;
+    }
+
+    .display-2 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: var(--text-4xl);
+    }
+
+    h2 {
+        font-size: var(--text-3xl);
+    }
+
+    h3 {
+        font-size: var(--text-2xl);
+    }
+
+    h4 {
+        font-size: var(--text-lg);
+    }
+
+    .section-title {
+        font-size: var(--text-3xl);
+    }
+
+    .section-description {
+        font-size: var(--text-base);
+    }
+
+    .display-1 {
+        font-size: 2.75rem;
+    }
+
+    .display-2 {
+        font-size: 2.5rem;
+    }
+
+    .lead {
+        font-size: var(--text-base);
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: var(--text-2xl);
+    }
+
+    .display-1 {
+        font-size: 2.25rem;
+    }
+
+    .display-2 {
+        font-size: 2rem;
+    }
+}

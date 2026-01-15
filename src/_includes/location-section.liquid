@@ -1,0 +1,330 @@
+<section class="location-section" id="location">
+    <div class="location-container">
+        <!-- Header -->
+        <div class="location-header">
+            <h2 class="location-title">{{ homepage.location_section.headline }}</h2>
+            <p class="location-intro">{{ homepage.location_section.intro }}</p>
+        </div>
+
+        <!-- Bento Image Grid -->
+        <div class="location-bento">
+            <div class="bento-left">
+                <picture>
+                    <source type="image/avif" srcset="/assets/media/location/glass-suite-640w.avif">
+                    <source type="image/webp" srcset="/assets/media/location/glass-suite-640w.webp">
+                    <img src="/assets/media/location/glass-suite.jpg" alt="Arctic Glass Suite at Harriniva" loading="lazy">
+                </picture>
+            </div>
+            <div class="bento-middle">
+                <div class="bento-middle-top">
+                    <picture>
+                        <source type="image/avif" srcset="/assets/media/location/restaurant-640w.avif">
+                        <source type="image/webp" srcset="/assets/media/location/restaurant-640w.webp">
+                        <img src="/assets/media/location/restaurant.jpg" alt="Harriniva Resort Restaurant" loading="lazy">
+                    </picture>
+                </div>
+                <div class="bento-middle-bottom">
+                    <picture>
+                        <source type="image/avif" srcset="/assets/media/location/cabin-bedroom-640w.avif">
+                        <source type="image/webp" srcset="/assets/media/location/cabin-bedroom-640w.webp">
+                        <img src="/assets/media/location/cabin-bedroom.jpg" alt="Cozy Cabin Bedroom" loading="lazy">
+                    </picture>
+                </div>
+            </div>
+            <div class="bento-right">
+                <picture>
+                    <source type="image/avif" srcset="/assets/media/location/winter-landscape-1080w.avif">
+                    <source type="image/webp" srcset="/assets/media/location/winter-landscape-1080w.webp">
+                    <img src="/assets/media/location/winter-landscape.jpg" alt="Winter Landscape in Finnish Lapland" loading="lazy">
+                </picture>
+            </div>
+        </div>
+
+        <!-- What Families Love -->
+        <div class="location-features">
+            <h4 class="location-features-title">{{ homepage.location_section.subheadline }}</h4>
+            <ul class="location-features-list">
+                {% for feature in homepage.location_section.features %}
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>{{ feature }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Stats -->
+        <div class="location-stats">
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number">~1 hour</span>
+                    <span class="stat-label">From Kittila Airport</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number">68°N</span>
+                    <span class="stat-label">Arctic Circle Location</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.location-section {
+    background-color: var(--color-white);
+    padding: var(--space-12) 0;
+}
+
+.location-container {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 0 var(--space-8);
+}
+
+/* Header */
+.location-header {
+    margin-bottom: var(--space-8);
+}
+
+.location-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: black;
+    margin-bottom: var(--space-3);
+    font-style: normal;
+    line-height: 1.2;
+}
+
+.location-intro {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0;
+}
+
+/* Bento Grid */
+.location-bento {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.5fr;
+    grid-template-rows: 400px;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+}
+
+.bento-left {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 400px;
+}
+
+.bento-right {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 400px;
+}
+
+.bento-left picture,
+.bento-right picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.bento-left img,
+.bento-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.bento-middle {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    height: 400px;
+}
+
+.bento-middle-top,
+.bento-middle-bottom {
+    flex: 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    min-height: 0;
+}
+
+.bento-middle-top picture,
+.bento-middle-bottom picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.bento-middle-top img,
+.bento-middle-bottom img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Features */
+.location-features {
+    margin-bottom: var(--space-6);
+}
+
+.location-features-title {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.location-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.location-features-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-2) 0;
+    color: var(--color-text-primary);
+    font-size: var(--text-base);
+    line-height: 1.5;
+}
+
+.location-features-list li svg {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Stats */
+.location-stats {
+    display: flex;
+    gap: var(--space-8);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(135, 28, 83, 0.08);
+    border-radius: 50%;
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--color-text-primary);
+    line-height: 1.2;
+}
+
+.stat-label {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .location-bento {
+        grid-template-columns: 1fr 1fr;
+        height: auto;
+    }
+
+    .bento-left {
+        height: 250px;
+    }
+
+    .bento-middle {
+        height: 250px;
+    }
+
+    .bento-right {
+        grid-column: span 2;
+        height: 250px;
+    }
+
+    .location-stats {
+        flex-wrap: wrap;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .location-section {
+        padding: var(--space-10) 0;
+    }
+
+    .location-container {
+        padding: 0 var(--space-4);
+    }
+
+    .location-title {
+        font-size: 2rem;
+    }
+
+    .location-intro {
+        font-size: var(--text-base);
+    }
+
+    .location-bento {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+
+    .bento-left,
+    .bento-right {
+        height: 200px;
+    }
+
+    .bento-middle {
+        flex-direction: row;
+        height: 150px;
+    }
+
+    .bento-right {
+        grid-column: span 1;
+    }
+
+    .location-stats {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .stat-item {
+        padding: var(--space-3);
+        background-color: var(--color-frost);
+        border-radius: var(--radius-md);
+    }
+}
+</style>

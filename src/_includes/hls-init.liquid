@@ -1,0 +1,69 @@
+<!-- HLS.js Video Player Initialization -->
+<script defer src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', function() {
+    // Find all videos with HLS sources
+    const videos = document.querySelectorAll('video source[type="application/x-mpegURL"]');
+
+    videos.forEach(function(source) {
+        const video = source.parentElement;
+        const hlsUrl = source.getAttribute('src');
+
+        // Skip if no URL or already initialized
+        if (!hlsUrl || video.dataset.hlsInitialized) return;
+        video.dataset.hlsInitialized = 'true';
+
+        // Safari has native HLS support
+        if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            // Remove source elements and set src directly for Safari
+            while (video.firstChild) video.removeChild(video.firstChild);
+            video.src = hlsUrl;
+            video.load();
+        }
+        // Chrome/Firefox need HLS.js polyfill
+        else if (typeof Hls !== 'undefined' && Hls.isSupported()) {
+            const hls = new Hls({
+                enableWorker: true,
+                startLevel: 0,              // Start with lowest quality for fast initial load
+                capLevelToPlayerSize: true, // Match quality to player size
+                maxBufferLength: 30,
+                backBufferLength: 30
+            });
+
+            // Error recovery
+            hls.on(Hls.Events.ERROR, function(event, data) {
+                if (data.fatal) {
+                    switch (data.type) {
+                        case Hls.ErrorTypes.NETWORK_ERROR:
+                            console.warn('HLS network error, attempting recovery...');
+                            hls.startLoad();
+                            break;
+                        case Hls.ErrorTypes.MEDIA_ERROR:
+                            console.warn('HLS media error, attempting recovery...');
+                            hls.recoverMediaError();
+                            break;
+                        default:
+                            console.error('Fatal HLS error:', data);
+                            hls.destroy();
+                            break;
+                    }
+                }
+            });
+
+            hls.loadSource(hlsUrl);
+            hls.attachMedia(video);
+
+            // Handle autoplay after manifest is parsed
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                if (video.hasAttribute('autoplay')) {
+                    video.play().catch(function(e) {
+                        console.log('Autoplay prevented:', e.message);
+                    });
+                }
+            });
+        } else {
+            console.warn('HLS not supported in this browser');
+        }
+    });
+});
+</script>

@@ -1,0 +1,226 @@
+<section class="availability-section" id="availability">
+    <div class="availability-container">
+        <div class="availability-header">
+            <h2 class="availability-title">{{ homepage.availability_section.headline }}</h2>
+            <p class="availability-intro">{{ homepage.availability_section.intro }}</p>
+        </div>
+
+        <div class="availability-card">
+            <div class="availability-row">
+                <span class="availability-month">November</span>
+                <span class="availability-dates">28 Nov - 30 Nov 2026</span>
+            </div>
+            <div class="availability-row">
+                <span class="availability-month">December</span>
+                <span class="availability-dates">1 Dec - 24 Dec 2026</span>
+            </div>
+        </div>
+
+        <div class="availability-features">
+            <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>3 & 4 night options</span>
+            </div>
+            <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Full board included</span>
+            </div>
+            <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Arctic activities</span>
+            </div>
+        </div>
+
+        <div class="availability-cta-wrapper">
+            <a href="{{ homepage.availability_section.cta.url }}" class="availability-cta-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg>
+                <span>{{ homepage.availability_section.cta.text }}</span>
+            </a>
+            <svg class="availability-cta-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+
+        <div class="availability-note">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <p>{{ homepage.availability_section.note }}</p>
+        </div>
+    </div>
+</section>
+
+<style>
+.availability-section {
+    background-color: var(--color-white);
+    padding: var(--space-12) 0;
+}
+
+.availability-container {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 0 var(--space-8);
+}
+
+.availability-header {
+    text-align: left;
+    margin-bottom: var(--space-10);
+}
+
+.availability-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: black;
+    margin-bottom: var(--space-3);
+    line-height: 1.2;
+}
+
+.availability-intro {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    max-width: 500px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.availability-card {
+    max-width: 500px;
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-bottom: var(--space-8);
+}
+
+.availability-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.availability-row:last-child {
+    border-bottom: none;
+}
+
+.availability-month {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: black;
+}
+
+.availability-dates {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+}
+
+.availability-features {
+    display: flex;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.feature-item svg {
+    color: black;
+}
+
+.feature-item span {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+}
+
+.availability-cta-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+}
+
+.availability-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: black;
+    color: white;
+    padding: var(--space-3) var(--space-5);
+    border-radius: 10px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.availability-cta-button:hover {
+    color: white;
+}
+
+.availability-cta-button svg {
+    width: 18px;
+    height: 18px;
+    color: #FDD5A9;
+}
+
+.availability-cta-arrow {
+    color: black;
+}
+
+.availability-note {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    max-width: 500px;
+    padding: var(--space-4) 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.availability-note svg {
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.availability-note p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .availability-section {
+        padding: var(--space-10) 0;
+    }
+
+    .availability-container {
+        padding: 0 var(--space-4);
+    }
+
+    .availability-title {
+        font-size: 2rem;
+    }
+
+    .availability-intro {
+        font-size: var(--text-base);
+    }
+
+    .availability-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-1);
+        padding: var(--space-4);
+    }
+
+    .availability-features {
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .availability-cta-wrapper {
+        justify-content: space-between;
+        max-width: 500px;
+    }
+}
+</style>

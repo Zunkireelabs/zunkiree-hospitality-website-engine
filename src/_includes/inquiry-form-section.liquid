@@ -1,0 +1,836 @@
+{% assign inquiry = homepage.inquiry_section %}
+
+<section class="inquiry-section" id="inquiry">
+    <div class="inquiry-container">
+        <div class="inquiry-header">
+            <h2 class="inquiry-headline">{{ inquiry.headline }}</h2>
+            <p class="inquiry-intro">{{ inquiry.intro }}</p>
+        </div>
+
+        <div class="inquiry-card">
+            <form class="inquiry-form" action="{{ inquiry.form_action }}" method="POST">
+                <!-- Progress Bar -->
+                <div class="inquiry-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-step="1"></div>
+                    </div>
+                    <div class="progress-info">
+                        <span class="progress-percent">33%</span>
+                        <span class="progress-step">Step 1 of 3</span>
+                    </div>
+                </div>
+
+                {% for step in inquiry.steps %}
+                {% if step.id == "trip_length" %}
+                <!-- Step 1: Trip Length -->
+                <div class="inquiry-step active" data-step="1">
+                    <h3 class="step-question">{{ step.question }}</h3>
+                    <div class="option-cards">
+                        {% for option in step.options %}
+                        <label class="option-card">
+                            <input type="radio" name="{{ step.id }}" value="{{ option.value }}" {% if forloop.first %}checked{% endif %}>
+                            <span class="option-content">
+                                <span class="option-radio"></span>
+                                <span class="option-label">{{ option.label }}</span>
+                                <span class="option-desc">{{ option.description }}</span>
+                            </span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if step.id == "month" %}
+                <!-- Step 2: Month -->
+                <div class="inquiry-step" data-step="2">
+                    <h3 class="step-question">{{ step.question }}</h3>
+                    <div class="option-cards">
+                        {% for option in step.options %}
+                        <label class="option-card">
+                            <input type="radio" name="{{ step.id }}" value="{{ option.value }}" {% if forloop.first %}checked{% endif %}>
+                            <span class="option-content">
+                                <span class="option-radio"></span>
+                                <span class="option-label">{{ option.label }}</span>
+                                <span class="option-desc">{{ option.description }}</span>
+                            </span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if step.id == "contact" %}
+                <!-- Step 3: Contact & Group -->
+                <div class="inquiry-step" data-step="3">
+                    <h3 class="step-question">{{ step.question }}</h3>
+
+                    <!-- Travelers Counter -->
+                    <div class="travelers-group">
+                        {% for traveler in step.travelers %}
+                        <div class="traveler-row">
+                            <div class="traveler-info">
+                                <span class="traveler-label">{{ traveler.label }}</span>
+                                <span class="traveler-desc">{{ traveler.description }}</span>
+                            </div>
+                            <div class="traveler-counter">
+                                <button type="button" class="counter-btn minus" data-type="{{ traveler.type }}" data-min="{{ traveler.min }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+                                </button>
+                                <input type="number" name="{{ traveler.type }}" value="{{ traveler.default }}" min="{{ traveler.min }}" max="{{ traveler.max }}" class="counter-value" readonly>
+                                <button type="button" class="counter-btn plus" data-type="{{ traveler.type }}" data-max="{{ traveler.max }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Contact Fields -->
+                    <div class="contact-fields">
+                        {% for field in step.fields %}
+                        <div class="form-field">
+                            <label for="inquiry-{{ field.name }}">{{ field.label }}</label>
+                            <input
+                                type="{{ field.type }}"
+                                id="inquiry-{{ field.name }}"
+                                name="{{ field.name }}"
+                                placeholder="{{ field.placeholder }}"
+                                {% if field.required %}required{% endif %}
+                            >
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+                <!-- Navigation Buttons -->
+                <div class="inquiry-nav">
+                    <button type="button" class="btn-back" style="visibility: hidden;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                        <span>{{ inquiry.buttons.back }}</span>
+                    </button>
+                    <button type="button" class="btn-next">
+                        <span>{{ inquiry.buttons.next }}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
+                    <button type="submit" class="btn-submit" style="display: none;">
+                        <span>{{ inquiry.buttons.submit }}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Success State -->
+            <div class="inquiry-success" style="display: none;">
+                <div class="success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <h3 class="success-headline">{{ inquiry.success.headline }}</h3>
+                <p class="success-message">{{ inquiry.success.message }}</p>
+                <p class="success-sub">{{ inquiry.success.sub_message }}</p>
+                <a href="{{ inquiry.success.cta.url }}" class="success-cta">{{ inquiry.success.cta.text }}</a>
+            </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="inquiry-trust">
+            {% for badge in inquiry.trust_badges %}
+            <div class="trust-badge">
+                {% if badge.icon == "check" %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                {% elsif badge.icon == "clock" %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                {% elsif badge.icon == "shield" %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                {% endif %}
+                <span>{{ badge.text }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+.inquiry-section {
+    background-color: #FDF8F3;
+    padding: var(--space-16) 0;
+}
+
+.inquiry-container {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+}
+
+.inquiry-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.inquiry-headline {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: black;
+    margin-bottom: var(--space-2);
+    line-height: 1.2;
+}
+
+.inquiry-intro {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+}
+
+.inquiry-card {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Progress Bar */
+.inquiry-progress {
+    margin-bottom: var(--space-8);
+}
+
+.progress-bar {
+    height: 6px;
+    background: #E5E7EB;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: var(--space-2);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10B981, #34D399);
+    border-radius: 3px;
+    width: 33.33%;
+    transition: width 0.4s ease;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--text-sm);
+}
+
+.progress-percent {
+    color: #10B981;
+    font-weight: 600;
+}
+
+.progress-step {
+    color: var(--color-text-secondary);
+}
+
+/* Inquiry Step Container */
+.inquiry-section .inquiry-step {
+    display: none;
+}
+
+.inquiry-section .inquiry-step.active {
+    display: block;
+}
+
+
+/* Step Question */
+.inquiry-section .step-question {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    color: #000000 !important;
+    margin-bottom: 1.5rem !important;
+    text-align: center !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Option Cards */
+.inquiry-section .option-cards {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1rem !important;
+    margin-bottom: 1.5rem !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: stretch;
+}
+
+.inquiry-section .option-card {
+    display: flex !important;
+    position: relative !important;
+    cursor: pointer !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: 100%;
+}
+
+.inquiry-section .option-card input[type="radio"] {
+    position: absolute !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+.inquiry-section .option-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 1.25rem 1rem !important;
+    border: 2px solid #E5E7EB !important;
+    border-radius: 12px !important;
+    transition: all 0.2s ease !important;
+    background: #FFFFFF !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    min-height: 120px;
+}
+
+.inquiry-section .option-card input:checked + .option-content {
+    border-color: black !important;
+    background: #FAFAFA !important;
+}
+
+.inquiry-section .option-label {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: #000000 !important;
+    margin-bottom: 0.25rem !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
+.inquiry-section .option-desc {
+    font-size: 0.875rem !important;
+    color: #6B7280 !important;
+    line-height: 1.4 !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
+.inquiry-section .option-radio {
+    width: 20px !important;
+    height: 20px !important;
+    border: 2px solid #D1D5DB !important;
+    border-radius: 50% !important;
+    margin-bottom: 0.75rem !important;
+    position: relative !important;
+    display: block !important;
+}
+
+.option-card:hover .option-content {
+    border-color: #9CA3AF;
+}
+
+.option-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #D1D5DB;
+    border-radius: 50%;
+    margin-bottom: var(--space-3);
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.option-card input:checked + .option-content .option-radio {
+    border-color: black;
+}
+
+.option-card input:checked + .option-content .option-radio::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: black;
+    border-radius: 50%;
+}
+
+.option-label {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: black;
+    margin-bottom: var(--space-1);
+}
+
+.option-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+}
+
+/* Travelers Group */
+.travelers-group {
+    background: #F9FAFB;
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.traveler-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) 0;
+}
+
+.traveler-row:not(:last-child) {
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.traveler-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.traveler-label {
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: black;
+}
+
+.traveler-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+}
+
+.traveler-counter {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.counter-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #E5E7EB;
+    border-radius: 50%;
+    background: var(--color-white);
+    color: black;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.counter-btn:hover {
+    background: #F3F4F6;
+    border-color: #D1D5DB;
+}
+
+.counter-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.counter-value {
+    width: 40px;
+    text-align: center;
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: black;
+    border: none;
+    background: transparent;
+    -moz-appearance: textfield;
+}
+
+.counter-value::-webkit-outer-spin-button,
+.counter-value::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Contact Fields */
+.contact-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: black;
+    margin-bottom: var(--space-2);
+}
+
+.form-field input {
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid #E5E7EB;
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.form-field input:focus {
+    outline: none;
+    border-color: black;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-field input::placeholder {
+    color: #9CA3AF;
+}
+
+/* Navigation */
+.inquiry-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--space-6);
+    padding-top: var(--space-6);
+    border-top: 1px solid #E5E7EB;
+}
+
+.btn-back {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: var(--text-base);
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.btn-back:hover {
+    color: black;
+}
+
+.btn-next,
+.btn-submit {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    background: black;
+    border: none;
+    border-radius: var(--radius-full);
+    color: white;
+    font-size: var(--text-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-next:hover,
+.btn-submit:hover {
+    background: #1a1a1a;
+    transform: translateY(-1px);
+}
+
+.btn-next svg,
+.btn-submit svg {
+    transition: transform 0.2s ease;
+}
+
+.btn-next:hover svg {
+    transform: translateX(3px);
+}
+
+.btn-submit:hover svg {
+    transform: translateX(3px);
+}
+
+/* Trust Badges */
+.inquiry-trust {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-8);
+    margin-top: var(--space-6);
+    flex-wrap: wrap;
+}
+
+.trust-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.trust-badge svg {
+    color: #10B981;
+}
+
+.trust-badge span {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .inquiry-section {
+        padding: var(--space-12) 0;
+    }
+
+    .inquiry-headline {
+        font-size: 2rem;
+    }
+
+    .inquiry-card {
+        padding: var(--space-6);
+    }
+
+    .option-cards {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+
+    .option-content {
+        flex-direction: row;
+        justify-content: flex-start;
+        text-align: left;
+        padding: var(--space-4);
+        gap: var(--space-3);
+    }
+
+    .option-radio {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .option-label {
+        margin-bottom: 0;
+    }
+
+    .option-desc {
+        display: none;
+    }
+
+    .contact-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .inquiry-trust {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-3);
+    }
+
+    .inquiry-nav {
+        flex-direction: column-reverse;
+        gap: var(--space-3);
+    }
+
+    .btn-next,
+    .btn-submit {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn-back {
+        visibility: visible !important;
+    }
+}
+
+/* Success State */
+.inquiry-success {
+    text-align: center;
+    padding: var(--space-8) var(--space-4);
+}
+
+.success-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: #ECFDF5;
+    border-radius: 50%;
+    margin-bottom: var(--space-6);
+}
+
+.success-icon svg {
+    color: #10B981;
+}
+
+.success-headline {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: black;
+    margin-bottom: var(--space-3);
+}
+
+.success-message {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2);
+    line-height: 1.6;
+}
+
+.success-sub {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-6);
+}
+
+.success-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    background: black;
+    border: none;
+    border-radius: var(--radius-full);
+    color: white;
+    font-size: var(--text-base);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.success-cta:hover {
+    background: #1a1a1a;
+    color: white;
+    transform: translateY(-1px);
+}
+</style>
+
+<script>
+(function() {
+    const form = document.querySelector('.inquiry-form');
+    if (!form) return;
+
+    const steps = form.querySelectorAll('.inquiry-step');
+    const progressFill = form.querySelector('.progress-fill');
+    const progressPercent = form.querySelector('.progress-percent');
+    const progressStep = form.querySelector('.progress-step');
+    const btnBack = form.querySelector('.btn-back');
+    const btnNext = form.querySelector('.btn-next');
+    const btnSubmit = form.querySelector('.btn-submit');
+
+    let currentStep = 1;
+    const totalSteps = steps.length;
+
+    function updateProgress() {
+        const percent = Math.round((currentStep / totalSteps) * 100);
+        progressFill.style.width = percent + '%';
+        progressPercent.textContent = percent + '%';
+        progressStep.textContent = `Step ${currentStep} of ${totalSteps}`;
+    }
+
+    function showStep(step) {
+        steps.forEach(s => s.classList.remove('active'));
+        form.querySelector(`.inquiry-step[data-step="${step}"]`).classList.add('active');
+
+        // Update buttons
+        btnBack.style.visibility = step === 1 ? 'hidden' : 'visible';
+
+        if (step === totalSteps) {
+            btnNext.style.display = 'none';
+            btnSubmit.style.display = 'flex';
+        } else {
+            btnNext.style.display = 'flex';
+            btnSubmit.style.display = 'none';
+        }
+
+        updateProgress();
+    }
+
+    btnNext.addEventListener('click', () => {
+        if (currentStep < totalSteps) {
+            currentStep++;
+            showStep(currentStep);
+        }
+    });
+
+    btnBack.addEventListener('click', () => {
+        if (currentStep > 1) {
+            currentStep--;
+            showStep(currentStep);
+        }
+    });
+
+    // Traveler counter functionality
+    const counterBtns = form.querySelectorAll('.counter-btn');
+    counterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const type = btn.dataset.type;
+            const input = form.querySelector(`input[name="${type}"]`);
+            let value = parseInt(input.value);
+
+            if (btn.classList.contains('minus')) {
+                const min = parseInt(btn.dataset.min);
+                if (value > min) {
+                    input.value = value - 1;
+                }
+            } else if (btn.classList.contains('plus')) {
+                const max = parseInt(btn.dataset.max);
+                if (value < max) {
+                    input.value = value + 1;
+                }
+            }
+
+            // Update button states
+            updateCounterButtons(type);
+        });
+    });
+
+    function updateCounterButtons(type) {
+        const input = form.querySelector(`input[name="${type}"]`);
+        const value = parseInt(input.value);
+        const minusBtn = form.querySelector(`.counter-btn.minus[data-type="${type}"]`);
+        const plusBtn = form.querySelector(`.counter-btn.plus[data-type="${type}"]`);
+
+        minusBtn.disabled = value <= parseInt(minusBtn.dataset.min);
+        plusBtn.disabled = value >= parseInt(plusBtn.dataset.max);
+    }
+
+    // Initialize counter button states
+    form.querySelectorAll('.counter-value').forEach(input => {
+        updateCounterButtons(input.name);
+    });
+
+    // Form submission handler
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Collect form data
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        // Log form data (for debugging - in production, send to server)
+        console.log('Form submitted:', data);
+
+        // Hide the form and show success state
+        const inquiryCard = document.querySelector('.inquiry-card');
+        const successDiv = document.querySelector('.inquiry-success');
+
+        if (inquiryCard && successDiv) {
+            form.style.display = 'none';
+            successDiv.style.display = 'block';
+
+            // Update progress to 100%
+            progressFill.style.width = '100%';
+            progressPercent.textContent = '100%';
+            progressStep.textContent = 'Complete!';
+        }
+
+        // Optional: Send data to server via fetch
+        // fetch('/api/quote-request', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(data)
+        // });
+    });
+
+    // Initialize
+    showStep(1);
+})();
+</script>

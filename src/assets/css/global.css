@@ -42,7 +42,7 @@
     --color-border: var(--color-gray-200);
 
     /* ---- Typography ---- */
-    --font-primary: 'Museo Sans', 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
     /* Font Sizes */
     --text-xs: 0.75rem;      /* 12px */

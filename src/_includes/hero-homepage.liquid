@@ -1,6 +1,16 @@
 <section class="hero {% unless homepage.hero.search_bar %}hero-simple{% endunless %}" id="hero">
     <div class="hero-media">
+        {% if homepage.hero.images and homepage.hero.images.size > 0 %}
+        <!-- Image Slider -->
+        <div class="hero-slider">
+            {% for image in homepage.hero.images %}
+            <div class="hero-slide {% if forloop.first %}active{% endif %}" style="background-image: url('{{ image }}')"></div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <!-- Single Background Image -->
         <div class="hero-image-placeholder" {% if homepage.hero.background_image %}style="background-image: url('{{ homepage.hero.background_image }}')"{% endif %}></div>
+        {% endif %}
         <div class="hero-overlay"></div>
     </div>
 
@@ -171,6 +181,31 @@
     bottom: 0;
     background: url('/assets/media/hero-bg.jpg') center/cover no-repeat;
     background-color: var(--color-arctic);
+}
+
+/* Hero Image Slider */
+.hero-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero-slide.active {
+    opacity: 1;
 }
 
 .hero-overlay {
@@ -730,6 +765,17 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Hero Image Slider
+    const slides = document.querySelectorAll('.hero-slide');
+    if (slides.length > 1) {
+        let currentSlide = 0;
+        setInterval(function() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 5000);
+    }
+
     // Search field dropdowns
     const searchFields = document.querySelectorAll('.search-field');
 

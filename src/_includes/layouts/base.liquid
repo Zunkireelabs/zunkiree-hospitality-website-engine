@@ -42,6 +42,9 @@
     {%- if site.engine.modules.inclusions -%}
     <link rel="stylesheet" href="/assets/css/modules/inclusions.css">
     {%- endif -%}
+    {%- if site.engine.modules.hero -%}
+    <link rel="stylesheet" href="/assets/css/modules/hero.css">
+    {%- endif -%}
 
     {% if hasHlsVideos %}
     {% include "hls-init.liquid" %}

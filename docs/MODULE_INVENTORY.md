@@ -15,7 +15,7 @@
 | 1 | `layouts/base.liquid` | ~80 | `src/_includes/layouts/` |
 | 2 | `header.liquid` | 797 | `src/_includes/` |
 | 3 | `footer.liquid` | 325 | `src/_includes/` |
-| 4 | `hero-homepage.liquid` | 791 | `src/_includes/` |
+| 4 | `hero.liquid` | 185 | `src/_includes/modules/hero/` |
 | 5 | `trust-strip.liquid` | 38 | `src/_includes/modules/trust-strip/` |
 | 6 | `experiences-section.liquid` | 349 | `src/_includes/` |
 | 7 | `why-section.liquid` | 236 | `src/_includes/` |
@@ -66,7 +66,7 @@
 
 | Module Name | Current File | Purpose | Activation Key | Spec Compliant |
 |-------------|--------------|---------|----------------|----------------|
-| `hero` | `hero-homepage.liquid` | Homepage hero with slider | `engine.modules.hero` | ❌ No |
+| `hero` | `modules/hero/hero.liquid` | Homepage hero with slider | `engine.modules.hero` | ✅ Yes |
 | `trust_strip` | `modules/trust-strip/trust-strip.liquid` | Trust badges row | `engine.modules.trust_strip` | ✅ Yes |
 | `experiences` | `experiences-section.liquid` | Services/amenities grid | `engine.modules.experiences` | ❌ No |
 | `why` | `why-section.liquid` | Benefits/features highlight | `engine.modules.why` | ❌ No |
@@ -181,8 +181,8 @@ zunkire-hospitality-website-engine/
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| ✅ Compliant | 5 (Core + trust_strip + inclusions) | 26% |
-| ❌ Non-compliant | 14 (Remaining modules) | 74% |
+| ✅ Compliant | 6 (Core + hero + trust_strip + inclusions) | 32% |
+| ❌ Non-compliant | 13 (Remaining modules) | 68% |
 
 ---
 
@@ -199,7 +199,7 @@ Based on complexity and dependencies:
 | 5 | `experiences` | Medium | Card grid |
 | 6 | `location` | Medium | Map integration |
 | 7 | `social-proof` | Medium | Carousel/grid |
-| 8 | `hero` | Medium | Image slider, complex |
+| 8 | `hero` | HIGH | ✅ MIGRATED |
 | 9 | `trip-length` | Medium | Interactive cards |
 | 10 | `faq` | Medium | Accordion JS |
 | 11 | `video` | High | HLS, sub-components |

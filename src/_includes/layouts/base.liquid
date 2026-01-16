@@ -35,6 +35,11 @@
     <link rel="stylesheet" href="/assets/css/components.css">
     <link rel="stylesheet" href="/assets/css/utilities.css">
 
+    <!-- Module CSS (conditional) -->
+    {%- if site.engine.modules.trust_strip -%}
+    <link rel="stylesheet" href="/assets/css/modules/trust-strip.css">
+    {%- endif -%}
+
     {% if hasHlsVideos %}
     {% include "hls-init.liquid" %}
     {% endif %}

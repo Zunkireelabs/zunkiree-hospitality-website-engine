@@ -306,35 +306,6 @@
 }
 
 /* ============================================
-   Trust Indicators
-   ============================================ */
-.trust-strip {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-8);
-    padding: var(--space-6) 0;
-}
-
-.trust-item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    color: var(--color-text-secondary);
-}
-
-.trust-item svg {
-    width: 24px;
-    height: 24px;
-    color: var(--color-primary);
-}
-
-.trust-item span {
-    font-size: var(--text-sm);
-    font-weight: var(--font-medium);
-}
-
-/* ============================================
    Image with Overlay
    ============================================ */
 .image-overlay {
@@ -448,15 +419,6 @@
 
     .testimonial {
         padding: var(--space-6);
-    }
-
-    .trust-strip {
-        gap: var(--space-6);
-    }
-
-    .trust-item {
-        flex-basis: 45%;
-        justify-content: center;
     }
 
     .cta-primary,

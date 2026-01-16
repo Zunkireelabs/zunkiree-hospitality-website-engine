@@ -76,7 +76,8 @@ Module renders ONLY IF all conditions are met:
 ```liquid
 {%- assign has_search_bar = homepage.hero.search_bar -%}
 {%- assign has_cta = homepage.hero.cta_primary or homepage.hero.cta_secondary -%}
-{%- if site.engine.modules.hero and homepage.hero.headline and (has_search_bar or has_cta) -%}
+{%- assign has_action = has_search_bar or has_cta -%}
+{%- if site.engine.modules.hero and homepage.hero.headline and has_action -%}
 ```
 
 ---

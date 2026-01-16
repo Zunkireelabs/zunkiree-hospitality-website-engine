@@ -39,6 +39,9 @@
     {%- if site.engine.modules.trust_strip -%}
     <link rel="stylesheet" href="/assets/css/modules/trust-strip.css">
     {%- endif -%}
+    {%- if site.engine.modules.inclusions -%}
+    <link rel="stylesheet" href="/assets/css/modules/inclusions.css">
+    {%- endif -%}
 
     {% if hasHlsVideos %}
     {% include "hls-init.liquid" %}

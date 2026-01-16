@@ -1,3 +1,11 @@
+{%- comment -%}
+  MODULE: inclusions
+  PURPOSE: Display what's included checklist
+  ACTIVATION: site.engine.modules.inclusions
+  DATA SOURCE: homepage.inclusions_section
+{%- endcomment -%}
+
+{%- if site.engine.modules.inclusions and homepage.inclusions_section.inclusions.size > 0 -%}
 <section class="inclusions-section" id="inclusions">
     <div class="inclusions-container">
         <div class="inclusions-header">
@@ -27,178 +35,12 @@
             {% endfor %}
         </div>
 
+        {% if homepage.inclusions_section.disclaimer %}
         <div class="inclusions-note">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
             <p>{{ homepage.inclusions_section.disclaimer }}</p>
         </div>
+        {% endif %}
     </div>
 </section>
-
-<style>
-.inclusions-section {
-    background-color: #FDF8F3;
-    padding: var(--space-12) 0;
-}
-
-.inclusions-container {
-    max-width: var(--container-2xl);
-    margin: 0 auto;
-    padding: 0 var(--space-8);
-}
-
-.inclusions-header {
-    text-align: left;
-    margin-bottom: var(--space-10);
-}
-
-.inclusions-title {
-    font-size: 2.5rem;
-    font-weight: 400;
-    color: black;
-    margin-bottom: var(--space-3);
-    font-style: normal;
-    line-height: 1.2;
-}
-
-.inclusions-intro {
-    font-size: var(--text-lg);
-    color: var(--color-text-secondary);
-    max-width: 600px;
-    margin: 0;
-    line-height: 1.6;
-}
-
-.inclusions-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--space-6);
-    margin-bottom: var(--space-8);
-}
-
-.inclusion-item {
-    text-align: center;
-    padding: var(--space-4);
-}
-
-.inclusion-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 56px;
-    margin-bottom: var(--space-4);
-    color: black;
-}
-
-.inclusion-icon svg {
-    width: 40px;
-    height: 40px;
-}
-
-.inclusion-title {
-    font-size: var(--text-base);
-    font-weight: 600;
-    color: black;
-    margin-bottom: var(--space-2);
-    line-height: 1.3;
-}
-
-.inclusion-desc {
-    font-size: var(--text-sm);
-    color: var(--color-text-secondary);
-    line-height: 1.5;
-    margin: 0;
-}
-
-.inclusions-note {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-3);
-    max-width: 800px;
-    padding: var(--space-4) 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.inclusions-note svg {
-    color: var(--color-text-secondary);
-    flex-shrink: 0;
-    margin-top: 2px;
-}
-
-.inclusions-note p {
-    font-size: var(--text-sm);
-    color: var(--color-text-secondary);
-    margin: 0;
-    line-height: 1.6;
-    font-style: normal;
-}
-
-/* Tablet */
-@media (max-width: 1200px) {
-    .inclusions-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 900px) {
-    .inclusions-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .inclusions-section {
-        padding: var(--space-10) 0;
-    }
-
-    .inclusions-container {
-        padding: 0 var(--space-4);
-    }
-
-    .inclusions-title {
-        font-size: 2rem;
-    }
-
-    .inclusions-intro {
-        font-size: var(--text-base);
-    }
-
-    .inclusions-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-4);
-    }
-
-    .inclusion-item {
-        padding: var(--space-3);
-    }
-
-    .inclusion-icon {
-        height: 48px;
-        margin-bottom: var(--space-3);
-    }
-
-    .inclusion-icon svg {
-        width: 36px;
-        height: 36px;
-    }
-}
-
-@media (max-width: 480px) {
-    .inclusions-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-3);
-    }
-
-    .inclusion-item {
-        padding: var(--space-2);
-    }
-
-    .inclusion-title {
-        font-size: var(--text-sm);
-    }
-
-    .inclusion-desc {
-        font-size: var(--text-xs);
-    }
-}
-</style>
+{%- endif -%}

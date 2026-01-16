@@ -22,7 +22,7 @@
 | 8 | `why-lapland-section.liquid` | 151 | `src/_includes/` |
 | 9 | `location-section.liquid` | 332 | `src/_includes/` |
 | 10 | `trip-length-section.liquid` | 471 | `src/_includes/` |
-| 11 | `inclusions-section.liquid` | 204 | `src/_includes/` |
+| 11 | `inclusions.liquid` | 52 | `src/_includes/modules/inclusions/` |
 | 12 | `social-proof-section.liquid` | 300 | `src/_includes/` |
 | 13 | `faq-section.liquid` | 339 | `src/_includes/` |
 | 14 | `inquiry-form-section.liquid` | 836 | `src/_includes/` |
@@ -73,7 +73,7 @@
 | `why-lapland` | `why-lapland-section.liquid` | Destination selling points | `engine.modules.why-lapland` | ❌ No |
 | `location` | `location-section.liquid` | Location info + map | `engine.modules.location` | ❌ No |
 | `trip-length` | `trip-length-section.liquid` | Duration/package selector | `engine.modules.trip-length` | ❌ No |
-| `inclusions` | `inclusions-section.liquid` | What's included checklist | `engine.modules.inclusions` | ❌ No |
+| `inclusions` | `modules/inclusions/inclusions.liquid` | What's included checklist | `engine.modules.inclusions` | ✅ Yes |
 | `social-proof` | `social-proof-section.liquid` | Testimonials | `engine.modules.social-proof` | ❌ No |
 | `faq` | `faq-section.liquid` | FAQ accordion | `engine.modules.faq` | ❌ No |
 | `inquiry` | `inquiry-form-section.liquid` | Multi-step contact form | `engine.modules.inquiry` | ❌ No |
@@ -181,8 +181,8 @@ zunkire-hospitality-website-engine/
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| ✅ Compliant | 4 (Core + trust_strip) | 21% |
-| ❌ Non-compliant | 15 (Remaining modules) | 79% |
+| ✅ Compliant | 5 (Core + trust_strip + inclusions) | 26% |
+| ❌ Non-compliant | 14 (Remaining modules) | 74% |
 
 ---
 
@@ -194,7 +194,7 @@ Based on complexity and dependencies:
 |----------|--------|------------|-------|
 | 1 | `trust_strip` | Low | ✅ MIGRATED |
 | 2 | `why` | Low | Simple grid |
-| 3 | `inclusions` | Low | Checklist only |
+| 3 | `inclusions` | Low | ✅ MIGRATED |
 | 4 | `conversion` | Low | CTA block |
 | 5 | `experiences` | Medium | Card grid |
 | 6 | `location` | Medium | Map integration |

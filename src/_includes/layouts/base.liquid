@@ -9,8 +9,16 @@
     <meta name="robots" content="noindex, nofollow">
     {% endif %}
 
+    {% if page.url == '/' and homepage.meta.title %}
+    <title>{{ homepage.meta.title }}</title>
+    {% else %}
     <title>{{ title | default: site.name }}</title>
+    {% endif %}
+    {% if page.url == '/' and homepage.meta.description %}
+    <meta name="description" content="{{ homepage.meta.description }}">
+    {% else %}
     <meta name="description" content="{{ description | default: site.description }}">
+    {% endif %}
 
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="/assets/media/logo-dark.jpeg">

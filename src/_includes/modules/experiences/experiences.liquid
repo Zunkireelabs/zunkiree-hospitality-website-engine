@@ -1,0 +1,100 @@
+{%- comment -%}
+  MODULE: experiences
+  PURPOSE: Services/amenities carousel grid
+  ACTIVATION: site.engine.modules.experiences
+  DATA SOURCE: homepage.experiences_section
+  COMPLEXITY: MEDIUM
+  RISK: MEDIUM
+{%- endcomment -%}
+
+{%- if site.engine.modules.experiences
+  and homepage.experiences_section
+  and homepage.experiences_section.experiences
+  and homepage.experiences_section.experiences.size > 0
+-%}
+<section class="experiences-section" id="experiences">
+    <div class="experiences-container">
+        <div class="experiences-header">
+            <h2 class="experiences-title">{{ homepage.experiences_section.headline }}</h2>
+            <p class="experiences-intro">{{ homepage.experiences_section.intro }}</p>
+        </div>
+
+        <div class="carousel-wrapper">
+            <button class="carousel-arrow carousel-prev" aria-label="Previous experiences">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+
+            <div class="experiences-carousel">
+                {% for exp in homepage.experiences_section.experiences %}
+                {% assign img_base = exp.image | replace: '.jpg', '' | replace: '.jpeg', '' | replace: '.png', '' %}
+                {% assign is_local = exp.image | slice: 0, 1 %}
+                <div class="experience-card">
+                    {% if is_local == '/' %}
+                    <picture class="experience-image">
+                        <source
+                            type="image/avif"
+                            srcset="{{ img_base }}-640w.avif 640w, {{ img_base }}-1080w.avif 1080w"
+                            sizes="(max-width: 768px) 240px, 280px">
+                        <source
+                            type="image/webp"
+                            srcset="{{ img_base }}-640w.webp 640w, {{ img_base }}-1080w.webp 1080w"
+                            sizes="(max-width: 768px) 240px, 280px">
+                        <img
+                            src="{{ exp.image }}"
+                            alt="{{ exp.title }}"
+                            loading="lazy"
+                            decoding="async">
+                    </picture>
+                    {% else %}
+                    <div class="experience-image" style="background-image: url('{{ exp.image }}')"></div>
+                    {% endif %}
+                    <div class="experience-overlay">
+                        <h3 class="experience-card-title">{{ exp.title }}</h3>
+                        <p class="experience-desc">{{ exp.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <button class="carousel-arrow carousel-next" aria-label="Next experiences">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.querySelector('.experiences-carousel');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+
+    if (carousel && prevBtn && nextBtn) {
+        const scrollAmount = 300;
+
+        prevBtn.addEventListener('click', function() {
+            carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', function() {
+            carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+
+        // Update arrow visibility based on scroll position
+        function updateArrows() {
+            const isAtStart = carousel.scrollLeft <= 10;
+            const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 10;
+
+            prevBtn.style.opacity = isAtStart ? '0.3' : '1';
+            prevBtn.style.pointerEvents = isAtStart ? 'none' : 'auto';
+            nextBtn.style.opacity = isAtEnd ? '0.3' : '1';
+            nextBtn.style.pointerEvents = isAtEnd ? 'none' : 'auto';
+        }
+
+        carousel.addEventListener('scroll', updateArrows);
+        window.addEventListener('resize', updateArrows);
+        updateArrows();
+    }
+});
+</script>
+{%- endif -%}

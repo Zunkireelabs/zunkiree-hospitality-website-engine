@@ -17,7 +17,7 @@
 | 3 | `footer.liquid` | 325 | `src/_includes/` |
 | 4 | `hero.liquid` | 185 | `src/_includes/modules/hero/` |
 | 5 | `trust-strip.liquid` | 38 | `src/_includes/modules/trust-strip/` |
-| 6 | `experiences-section.liquid` | 349 | `src/_includes/` |
+| 6 | `experiences.liquid` | 97 | `src/_includes/modules/experiences/` |
 | 7 | `why.liquid` | 48 | `src/_includes/modules/why/` |
 | 8 | `why-lapland-section.liquid` | 151 | `src/_includes/` |
 | 9 | `location-section.liquid` | 332 | `src/_includes/` |
@@ -68,7 +68,7 @@
 |-------------|--------------|---------|----------------|----------------|
 | `hero` | `modules/hero/hero.liquid` | Homepage hero with slider | `engine.modules.hero` | ✅ Yes |
 | `trust_strip` | `modules/trust-strip/trust-strip.liquid` | Trust badges row | `engine.modules.trust_strip` | ✅ Yes |
-| `experiences` | `experiences-section.liquid` | Services/amenities grid | `engine.modules.experiences` | ❌ No |
+| `experiences` | `modules/experiences/experiences.liquid` | Services/amenities carousel | `engine.modules.experiences` | ✅ Yes |
 | `why` | `modules/why/why.liquid` | Benefits/features highlight | `engine.modules.why` | ✅ Yes |
 | `why-lapland` | `why-lapland-section.liquid` | Destination selling points | `engine.modules.why-lapland` | ❌ No |
 | `location` | `location-section.liquid` | Location info + map | `engine.modules.location` | ❌ No |
@@ -181,8 +181,8 @@ zunkire-hospitality-website-engine/
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| ✅ Compliant | 8 (Core + hero + trust_strip + inclusions + why + trip_length) | 42% |
-| ❌ Non-compliant | 11 (Remaining modules) | 58% |
+| ✅ Compliant | 9 (Core + hero + trust_strip + inclusions + why + trip_length + experiences) | 47% |
+| ❌ Non-compliant | 10 (Remaining modules) | 53% |
 
 ---
 
@@ -196,7 +196,7 @@ Based on complexity and dependencies:
 | 2 | `why` | Low | ✅ MIGRATED |
 | 3 | `inclusions` | Low | ✅ MIGRATED |
 | 4 | `conversion` | Low | CTA block |
-| 5 | `experiences` | Medium | Card grid |
+| 5 | `experiences` | Medium | ✅ MIGRATED |
 | 6 | `location` | Medium | Map integration |
 | 7 | `social-proof` | Medium | Carousel/grid |
 | 8 | `hero` | HIGH | ✅ MIGRATED |

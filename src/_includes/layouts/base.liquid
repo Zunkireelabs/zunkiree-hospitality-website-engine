@@ -48,6 +48,9 @@
     {%- if site.engine.modules.why -%}
     <link rel="stylesheet" href="/assets/css/modules/why.css">
     {%- endif -%}
+    {%- if site.engine.modules.trip_length -%}
+    <link rel="stylesheet" href="/assets/css/modules/trip-length.css">
+    {%- endif -%}
 
     {% if hasHlsVideos %}
     {% include "hls-init.liquid" %}

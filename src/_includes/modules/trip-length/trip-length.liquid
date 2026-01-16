@@ -1,0 +1,116 @@
+{%- comment -%}
+  MODULE: trip-length
+  PURPOSE: Duration/package selector with trip option cards
+  ACTIVATION: site.engine.modules.trip_length
+  DATA SOURCE: homepage.trip_length_section
+  COMPLEXITY: MEDIUM
+  RISK: MEDIUM
+{%- endcomment -%}
+
+{%- if site.engine.modules.trip_length and homepage.trip_length_section.options.size > 0 -%}
+<section class="trip-section" id="trip-length">
+    <div class="trip-container">
+        <div class="trip-header">
+            <h2 class="trip-title">{{ homepage.trip_length_section.headline }}</h2>
+            <p class="trip-intro">{{ homepage.trip_length_section.intro }}</p>
+        </div>
+
+        <div class="trip-options">
+            {% for option in homepage.trip_length_section.options %}
+            <div class="trip-card">
+                <div class="trip-card-image">
+                    <img src="{{ option.image }}" alt="{{ option.title }}">
+                </div>
+                <div class="trip-card-content">
+                <h3 class="trip-card-title">{{ option.title }}</h3>
+                <span class="trip-card-subtitle">{{ option.subtitle }}</span>
+
+                <p class="trip-card-desc">{{ option.description }}</p>
+
+                <div class="trip-ideal-for">
+                    <span class="trip-ideal-label">Ideal for</span>
+                    <ul class="trip-ideal-list">
+                        {% assign ideal_items = option.ideal_for | split: ', ' %}
+                        {% for item in ideal_items %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="trip-cta">
+                    <a href="/request-quote" class="trip-cta-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg>
+                        <span>Request a Quote</span>
+                    </a>
+                    <svg class="trip-cta-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% if homepage.trip_length_section.show_availability and homepage.trip_length_section.availability %}
+            <!-- Availability Card -->
+            <div class="trip-card availability-card">
+                <div class="trip-card-content">
+                    <h3 class="trip-card-title">{{ homepage.trip_length_section.availability.title | default: "2026 Dates" }}</h3>
+                    <span class="trip-card-subtitle">{{ homepage.trip_length_section.availability.subtitle | default: "Winter Season Availability" }}</span>
+
+                    <div class="availability-dates-card">
+                        {% for month in homepage.trip_length_section.availability.months %}
+                        <div class="availability-month-block">
+                            <div class="availability-row">
+                                <span class="availability-month">{{ month.name }}</span>
+                                <span class="availability-dates">{{ month.dates }}</span>
+                            </div>
+                            <div class="mini-calendar">
+                                <div class="calendar-header">
+                                    <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                                </div>
+                                <div class="calendar-grid">
+                                    {% for day in month.calendar %}
+                                    {% if day == 0 %}
+                                    <span></span>
+                                    {% elsif day > 0 %}
+                                    <span class="available">{{ day }}</span>
+                                    {% else %}
+                                    <span>{{ day | abs }}</span>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    {% if homepage.trip_length_section.availability.features %}
+                    <div class="availability-features">
+                        {% for feature in homepage.trip_length_section.availability.features %}
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>{{ feature }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {% if homepage.trip_length_section.availability.cta %}
+                    <div class="trip-cta">
+                        <a href="{{ homepage.trip_length_section.availability.cta.url }}" class="trip-cta-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg>
+                            <span>{{ homepage.trip_length_section.availability.cta.text }}</span>
+                        </a>
+                        <svg class="trip-cta-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="trip-note">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <p>{{ homepage.trip_length_section.note }}</p>
+        </div>
+    </div>
+</section>
+{%- endif -%}

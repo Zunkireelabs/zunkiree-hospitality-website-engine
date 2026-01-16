@@ -21,7 +21,7 @@
 | 7 | `why.liquid` | 48 | `src/_includes/modules/why/` |
 | 8 | `why-lapland-section.liquid` | 151 | `src/_includes/` |
 | 9 | `location-section.liquid` | 332 | `src/_includes/` |
-| 10 | `trip-length-section.liquid` | 471 | `src/_includes/` |
+| 10 | `trip-length.liquid` | 119 | `src/_includes/modules/trip-length/` |
 | 11 | `inclusions.liquid` | 52 | `src/_includes/modules/inclusions/` |
 | 12 | `social-proof-section.liquid` | 300 | `src/_includes/` |
 | 13 | `faq-section.liquid` | 339 | `src/_includes/` |
@@ -72,7 +72,7 @@
 | `why` | `modules/why/why.liquid` | Benefits/features highlight | `engine.modules.why` | ✅ Yes |
 | `why-lapland` | `why-lapland-section.liquid` | Destination selling points | `engine.modules.why-lapland` | ❌ No |
 | `location` | `location-section.liquid` | Location info + map | `engine.modules.location` | ❌ No |
-| `trip-length` | `trip-length-section.liquid` | Duration/package selector | `engine.modules.trip-length` | ❌ No |
+| `trip_length` | `modules/trip-length/trip-length.liquid` | Duration/package selector | `engine.modules.trip_length` | ✅ Yes |
 | `inclusions` | `modules/inclusions/inclusions.liquid` | What's included checklist | `engine.modules.inclusions` | ✅ Yes |
 | `social-proof` | `social-proof-section.liquid` | Testimonials | `engine.modules.social-proof` | ❌ No |
 | `faq` | `faq-section.liquid` | FAQ accordion | `engine.modules.faq` | ❌ No |
@@ -181,8 +181,8 @@ zunkire-hospitality-website-engine/
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| ✅ Compliant | 7 (Core + hero + trust_strip + inclusions + why) | 37% |
-| ❌ Non-compliant | 12 (Remaining modules) | 63% |
+| ✅ Compliant | 8 (Core + hero + trust_strip + inclusions + why + trip_length) | 42% |
+| ❌ Non-compliant | 11 (Remaining modules) | 58% |
 
 ---
 
@@ -200,7 +200,7 @@ Based on complexity and dependencies:
 | 6 | `location` | Medium | Map integration |
 | 7 | `social-proof` | Medium | Carousel/grid |
 | 8 | `hero` | HIGH | ✅ MIGRATED |
-| 9 | `trip-length` | Medium | Interactive cards |
+| 9 | `trip_length` | Medium | ✅ MIGRATED |
 | 10 | `faq` | Medium | Accordion JS |
 | 11 | `video` | High | HLS, sub-components |
 | 12 | `availability` | High | Interactive |

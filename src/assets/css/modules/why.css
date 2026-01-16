@@ -1,38 +1,28 @@
-<section class="why-section" id="why">
-    <div class="why-container">
-        <div class="why-header">
-            <h2 class="why-title">{{ homepage.why_section.headline }}</h2>
-            <p class="why-intro">{{ homepage.why_section.intro }}</p>
-        </div>
+/**
+ * MODULE: why
+ * PURPOSE: Benefits/features highlight section styles
+ * COMPLEXITY: LOW
+ *
+ * TECHNICAL DEBT (Phase 1.5):
+ * The following hardcoded values are accepted technical debt
+ * and will be migrated to design tokens in Phase 2:
+ *
+ * | Value                    | Usage                  | Future Token               |
+ * |--------------------------|------------------------|----------------------------|
+ * | 2.5rem                   | Desktop headline       | --text-3xl                 |
+ * | 2rem                     | Mobile headline        | --text-2xl                 |
+ * | 280px                    | Card min-height        | --card-min-height-lg       |
+ * | 220px                    | Mobile card min-height | --card-min-height-md       |
+ * | rgba(0,0,0,0.03)         | Card background        | --color-bg-card-subtle     |
+ * | rgba(0,0,0,0.05)         | Card hover             | --color-bg-card-hover      |
+ * | rgba(0,0,0,0.12)         | Card shadow            | --shadow-card-hover        |
+ * | rgba(0,0,0,0.25)         | Gradient overlay       | --overlay-gradient-dark    |
+ * | rgba(0,0,0,0.15)         | Hover gradient overlay | --overlay-gradient-light   |
+ * | rgba(0,0,0,0.5)          | Text shadow            | --shadow-text              |
+ * | rgba(135, 28, 83, 0.9)   | Icon background        | --color-primary-alpha-90   |
+ * | Unsplash URLs            | Background images      | Project data (not tokens)  |
+ */
 
-        <p class="why-subheadline">{{ homepage.why_section.subheadline }}</p>
-
-        <div class="why-grid">
-            {% for benefit in homepage.why_section.benefits %}
-            <div class="why-card why-card-{{ forloop.index }}">
-                <div class="why-card-bg"></div>
-                <div class="why-card-content">
-                    <div class="why-card-icon">
-                        {% if forloop.index == 1 %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
-                        {% elsif forloop.index == 2 %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 10-4 4-4-4"/></svg>
-                        {% elsif forloop.index == 3 %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                        {% elsif forloop.index == 4 %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                        {% endif %}
-                    </div>
-                    <h3 class="why-card-title">{{ benefit.title }}</h3>
-                    <p class="why-card-desc">{{ benefit.description }}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<style>
 .why-section {
     background-color: var(--color-white);
     padding: var(--space-12) 0;
@@ -233,4 +223,3 @@
         height: 28px;
     }
 }
-</style>

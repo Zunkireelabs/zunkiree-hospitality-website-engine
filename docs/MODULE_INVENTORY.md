@@ -18,7 +18,7 @@
 | 4 | `hero.liquid` | 185 | `src/_includes/modules/hero/` |
 | 5 | `trust-strip.liquid` | 38 | `src/_includes/modules/trust-strip/` |
 | 6 | `experiences-section.liquid` | 349 | `src/_includes/` |
-| 7 | `why-section.liquid` | 236 | `src/_includes/` |
+| 7 | `why.liquid` | 48 | `src/_includes/modules/why/` |
 | 8 | `why-lapland-section.liquid` | 151 | `src/_includes/` |
 | 9 | `location-section.liquid` | 332 | `src/_includes/` |
 | 10 | `trip-length-section.liquid` | 471 | `src/_includes/` |
@@ -69,7 +69,7 @@
 | `hero` | `modules/hero/hero.liquid` | Homepage hero with slider | `engine.modules.hero` | ✅ Yes |
 | `trust_strip` | `modules/trust-strip/trust-strip.liquid` | Trust badges row | `engine.modules.trust_strip` | ✅ Yes |
 | `experiences` | `experiences-section.liquid` | Services/amenities grid | `engine.modules.experiences` | ❌ No |
-| `why` | `why-section.liquid` | Benefits/features highlight | `engine.modules.why` | ❌ No |
+| `why` | `modules/why/why.liquid` | Benefits/features highlight | `engine.modules.why` | ✅ Yes |
 | `why-lapland` | `why-lapland-section.liquid` | Destination selling points | `engine.modules.why-lapland` | ❌ No |
 | `location` | `location-section.liquid` | Location info + map | `engine.modules.location` | ❌ No |
 | `trip-length` | `trip-length-section.liquid` | Duration/package selector | `engine.modules.trip-length` | ❌ No |
@@ -181,8 +181,8 @@ zunkire-hospitality-website-engine/
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| ✅ Compliant | 6 (Core + hero + trust_strip + inclusions) | 32% |
-| ❌ Non-compliant | 13 (Remaining modules) | 68% |
+| ✅ Compliant | 7 (Core + hero + trust_strip + inclusions + why) | 37% |
+| ❌ Non-compliant | 12 (Remaining modules) | 63% |
 
 ---
 
@@ -193,7 +193,7 @@ Based on complexity and dependencies:
 | Priority | Module | Complexity | Notes |
 |----------|--------|------------|-------|
 | 1 | `trust_strip` | Low | ✅ MIGRATED |
-| 2 | `why` | Low | Simple grid |
+| 2 | `why` | Low | ✅ MIGRATED |
 | 3 | `inclusions` | Low | ✅ MIGRATED |
 | 4 | `conversion` | Low | CTA block |
 | 5 | `experiences` | Medium | Card grid |

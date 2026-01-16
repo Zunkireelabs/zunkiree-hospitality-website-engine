@@ -1,0 +1,44 @@
+{%- comment -%}
+  MODULE: why
+  PURPOSE: Benefits/features highlight section
+  ACTIVATION: site.engine.modules.why
+  DATA SOURCE: homepage.why_section
+  COMPLEXITY: LOW
+  RISK: LOW
+{%- endcomment -%}
+
+{%- if site.engine.modules.why and homepage.why_section and homepage.why_section.benefits and homepage.why_section.benefits.size > 0 -%}
+<section class="why-section" id="why">
+    <div class="why-container">
+        <div class="why-header">
+            <h2 class="why-title">{{ homepage.why_section.headline }}</h2>
+            <p class="why-intro">{{ homepage.why_section.intro }}</p>
+        </div>
+
+        <p class="why-subheadline">{{ homepage.why_section.subheadline }}</p>
+
+        <div class="why-grid">
+            {% for benefit in homepage.why_section.benefits %}
+            <div class="why-card why-card-{{ forloop.index }}">
+                <div class="why-card-bg"></div>
+                <div class="why-card-content">
+                    <div class="why-card-icon">
+                        {% if forloop.index == 1 %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+                        {% elsif forloop.index == 2 %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 10-4 4-4-4"/></svg>
+                        {% elsif forloop.index == 3 %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        {% elsif forloop.index == 4 %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        {% endif %}
+                    </div>
+                    <h3 class="why-card-title">{{ benefit.title }}</h3>
+                    <p class="why-card-desc">{{ benefit.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{%- endif -%}

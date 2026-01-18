@@ -1,0 +1,176 @@
+.availability-section {
+    background-color: var(--color-white);
+    padding: var(--space-12) 0;
+}
+
+.availability-container {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 0 var(--space-8);
+}
+
+.availability-header {
+    text-align: left;
+    margin-bottom: var(--space-10);
+}
+
+.availability-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: black;
+    margin-bottom: var(--space-3);
+    line-height: 1.2;
+}
+
+.availability-intro {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    max-width: 500px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.availability-card {
+    max-width: 500px;
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-bottom: var(--space-8);
+}
+
+.availability-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.availability-row:last-child {
+    border-bottom: none;
+}
+
+.availability-month {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: black;
+}
+
+.availability-dates {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+}
+
+.availability-features {
+    display: flex;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.feature-item svg {
+    color: black;
+}
+
+.feature-item span {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+}
+
+.availability-cta-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+}
+
+.availability-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: black;
+    color: white;
+    padding: var(--space-3) var(--space-5);
+    border-radius: 10px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.availability-cta-button:hover {
+    color: white;
+}
+
+.availability-cta-button svg {
+    width: 18px;
+    height: 18px;
+    color: #FDD5A9;
+}
+
+.availability-cta-arrow {
+    color: black;
+}
+
+.availability-note {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    max-width: 500px;
+    padding: var(--space-4) 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.availability-note svg {
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.availability-note p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .availability-section {
+        padding: var(--space-10) 0;
+    }
+
+    .availability-container {
+        padding: 0 var(--space-4);
+    }
+
+    .availability-title {
+        font-size: 2rem;
+    }
+
+    .availability-intro {
+        font-size: var(--text-base);
+    }
+
+    .availability-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-1);
+        padding: var(--space-4);
+    }
+
+    .availability-features {
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .availability-cta-wrapper {
+        justify-content: space-between;
+        max-width: 500px;
+    }
+}

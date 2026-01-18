@@ -27,7 +27,7 @@
 | 13 | `faq-section.liquid` | 339 | `src/_includes/` |
 | 14 | `inquiry-form-section.liquid` | 836 | `src/_includes/` |
 | 15 | `availability-section.liquid` | 226 | `src/_includes/` |
-| 16 | `conversion-section.liquid` | 288 | `src/_includes/` |
+| 16 | `conversion.liquid` | 49 | `src/_includes/modules/conversion/` |
 | 17 | `video-showcase-section.liquid` | 172 | `src/_includes/` |
 | 18 | `media-video.liquid` | 43 | `src/_includes/` |
 | 19 | `hls-init.liquid` | 69 | `src/_includes/` |
@@ -78,7 +78,7 @@
 | `faq` | `faq-section.liquid` | FAQ accordion | `engine.modules.faq` | ❌ No |
 | `inquiry` | `inquiry-form-section.liquid` | Multi-step contact form | `engine.modules.inquiry` | ❌ No |
 | `availability` | `availability-section.liquid` | Availability checker | `engine.modules.availability` | ❌ No |
-| `conversion` | `conversion-section.liquid` | CTA blocks | `engine.modules.conversion` | ❌ No |
+| `conversion` | `modules/conversion/conversion.liquid` | CTA blocks | `engine.modules.conversion` | ✅ Yes |
 | `video` | `video-showcase-section.liquid` | Video player section | `engine.modules.video` | ❌ No |
 
 **Helper/Utility Components (Sub-modules):**
@@ -181,8 +181,8 @@ zunkire-hospitality-website-engine/
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| ✅ Compliant | 11 (Core + hero + trust_strip + inclusions + why + trip_length + experiences + location + social_proof) | 58% |
-| ❌ Non-compliant | 8 (Remaining modules) | 42% |
+| ✅ Compliant | 12 (Core + hero + trust_strip + inclusions + why + trip_length + experiences + location + social_proof + conversion) | 63% |
+| ❌ Non-compliant | 7 (Remaining modules) | 37% |
 
 ---
 
@@ -195,7 +195,7 @@ Based on complexity and dependencies:
 | 1 | `trust_strip` | Low | ✅ MIGRATED |
 | 2 | `why` | Low | ✅ MIGRATED |
 | 3 | `inclusions` | Low | ✅ MIGRATED |
-| 4 | `conversion` | Low | CTA block |
+| 4 | `conversion` | Low | ✅ MIGRATED |
 | 5 | `experiences` | Medium | ✅ MIGRATED |
 | 6 | `location` | Medium | ✅ MIGRATED |
 | 7 | `social_proof` | Medium | ✅ MIGRATED |

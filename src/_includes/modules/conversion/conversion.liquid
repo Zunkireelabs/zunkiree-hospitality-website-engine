@@ -1,0 +1,50 @@
+{%- comment -%}
+  MODULE: conversion
+  PURPOSE: CTA section with headline, button, reassurance points, and image collage
+  ACTIVATION: site.engine.modules.conversion
+  DATA SOURCE: homepage.conversion_section
+  COMPLEXITY: LOW
+  RISK: LOW
+{%- endcomment -%}
+
+{%- if site.engine.modules.conversion
+  and homepage.conversion_section
+  and homepage.conversion_section.cta
+-%}
+<section class="conversion-section" id="quote">
+    <div class="conversion-container">
+        <div class="conversion-content">
+            <h2 class="conversion-title">{{ homepage.conversion_section.headline }}</h2>
+            <p class="conversion-intro">{{ homepage.conversion_section.intro }}</p>
+
+            <div class="conversion-card">
+                <a href="{{ homepage.conversion_section.cta.url }}" class="conversion-cta">
+                    <span>{{ homepage.conversion_section.cta.text }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+
+                <ul class="conversion-reassurance">
+                    {% for point in homepage.conversion_section.reassurance %}
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>{{ point }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        {% if homepage.conversion_section.images and homepage.conversion_section.images.size > 0 %}
+        <div class="conversion-images">
+            <div class="image-collage">
+                {% for image in homepage.conversion_section.images limit:3 %}
+                <div class="collage-img collage-img-{{ forloop.index }}">
+                    <img src="{{ image }}" alt="{{ homepage.conversion_section.headline }}" loading="lazy">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{%- endif -%}

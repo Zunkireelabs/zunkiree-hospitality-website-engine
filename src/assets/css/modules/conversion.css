@@ -1,41 +1,35 @@
-<section class="conversion-section" id="quote">
-    <div class="conversion-container">
-        <div class="conversion-content">
-            <h2 class="conversion-title">{{ homepage.conversion_section.headline }}</h2>
-            <p class="conversion-intro">{{ homepage.conversion_section.intro }}</p>
+/**
+ * MODULE: conversion
+ * PURPOSE: CTA section with headline, button, reassurance points, and image collage
+ * COMPLEXITY: LOW
+ *
+ * TECHNICAL DEBT (Phase 1.5):
+ * The following hardcoded values are accepted technical debt
+ * and will be migrated to design tokens in Phase 2:
+ *
+ * | Value                      | Usage                  | Future Token              |
+ * |----------------------------|------------------------|---------------------------|
+ * | 2.5rem                     | Title desktop          | --text-3xl                |
+ * | 2rem                       | Title mobile           | --text-2xl                |
+ * | 550px                      | Content max-width      | --content-width-md        |
+ * | 480px                      | Collage max-width lg   | --collage-width-lg        |
+ * | 380px                      | Collage max-width md   | --collage-width-md        |
+ * | 320px                      | Collage max-width sm   | --collage-width-sm        |
+ * | 420px                      | Collage height desktop | --collage-height-lg       |
+ * | 350px                      | Collage height tablet  | --collage-height-md       |
+ * | 300px                      | Collage height mobile  | --collage-height-sm       |
+ * | 200px/220px                | Collage item widths    | --collage-item-*          |
+ * | 180px/200px                | Collage item heights   | --collage-item-height-*   |
+ * | black                      | CTA background         | --color-text-primary      |
+ * | white                      | CTA text color         | --color-white             |
+ * | #1a1a1a                    | CTA hover bg           | --color-gray-900          |
+ * | #16a34a                    | Checkmark color        | --color-success           |
+ * | rgba(0,0,0,0.06)           | Card shadow            | --shadow-sm               |
+ * | rgba(0,0,0,0.12)           | Collage shadow         | --shadow-md               |
+ * | rgba(0,0,0,0.15)           | CTA hover shadow       | --shadow-lg               |
+ * | External URL               | Background image       | Project-specific asset    |
+ */
 
-            <div class="conversion-card">
-                <a href="{{ homepage.conversion_section.cta.url }}" class="conversion-cta">
-                    <span>{{ homepage.conversion_section.cta.text }}</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </a>
-
-                <ul class="conversion-reassurance">
-                    {% for point in homepage.conversion_section.reassurance %}
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        <span>{{ point }}</span>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-
-        {% if homepage.conversion_section.images and homepage.conversion_section.images.size > 0 %}
-        <div class="conversion-images">
-            <div class="image-collage">
-                {% for image in homepage.conversion_section.images limit:3 %}
-                <div class="collage-img collage-img-{{ forloop.index }}">
-                    <img src="{{ image }}" alt="{{ homepage.conversion_section.headline }}" loading="lazy">
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        {% endif %}
-    </div>
-</section>
-
-<style>
 .conversion-section {
     background-color: var(--color-frost);
     background-image: url('https://img-strapi.vistarooms.com/strapi/Desk_8a143ac32d.svg');
@@ -285,4 +279,3 @@
         right: 10px;
     }
 }
-</style>

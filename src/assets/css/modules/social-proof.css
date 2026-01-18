@@ -1,61 +1,34 @@
-<section class="social-section" id="social-proof">
-    <div class="social-container">
-        <!-- Two-Column Hero: Image Left + Solid Block Right -->
-        <div class="social-hero">
-            <!-- Left: Image with overlaid card -->
-            <div class="social-hero-left">
-                <div class="social-hero-bg">
-                    {% if homepage.social_proof_section.background_image %}
-                    <img src="{{ homepage.social_proof_section.background_image }}" alt="{{ homepage.social_proof_section.headline }}" loading="lazy">
-                    {% endif %}
-                </div>
-                <div class="social-hero-overlay"></div>
+/**
+ * MODULE: social-proof
+ * PURPOSE: Social proof section with hero, partner block, and features grid
+ * COMPLEXITY: MEDIUM
+ *
+ * TECHNICAL DEBT (Phase 1.5):
+ * The following hardcoded values are accepted technical debt
+ * and will be migrated to design tokens in Phase 2:
+ *
+ * | Value                      | Usage                  | Future Token              |
+ * |----------------------------|------------------------|---------------------------|
+ * | 1.75rem                    | Card title desktop     | --text-xl                 |
+ * | 1.5rem                     | Card title mobile      | --text-lg                 |
+ * | 350px                      | Hero left min-height   | --hero-height-lg          |
+ * | 300px                      | Hero left tablet       | --hero-height-md          |
+ * | 280px                      | Hero left mobile       | --hero-height-sm          |
+ * | 420px                      | Content card max-width | --card-width-lg           |
+ * | 56px                       | Partner badge size     | --badge-size-lg           |
+ * | 48px                       | Feature icon size      | --icon-size-lg            |
+ * | 40px                       | Feature icon mobile    | --icon-size-md            |
+ * | #FDF8F3                    | Partner block bg       | --color-warm-bg           |
+ * | black                      | Badge bg, text colors  | --color-text-primary      |
+ * | white                      | Card title color       | --color-white             |
+ * | rgba(255,255,255,0.15)     | Card glass background  | --glass-bg                |
+ * | rgba(255,255,255,0.85)     | Card intro color       | --color-text-light-alpha  |
+ * | rgba(255,255,255,0.25)     | Card border            | --glass-border            |
+ * | rgba(0,0,0,0.2/0.1)        | Overlay gradient       | --overlay-gradient        |
+ * | rgba(0,0,0,0.08)           | Feature icon border    | --border-subtle           |
+ * | 1.5fr 1fr                  | Hero grid columns      | Custom layout             |
+ */
 
-                <!-- White card floating on image -->
-                <div class="content-card">
-                    <h2 class="content-card-title">{{ homepage.social_proof_section.headline }}</h2>
-                    <p class="content-card-intro">{{ homepage.social_proof_section.intro }}</p>
-                </div>
-            </div>
-
-            <!-- Right: Solid colored block -->
-            <div class="social-hero-right">
-                <div class="partner-badge">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
-                </div>
-                <h4 class="partner-label">Our Partner</h4>
-                <p class="partner-note">{{ homepage.social_proof_section.partner_note }}</p>
-            </div>
-        </div>
-
-        <!-- Features Grid (Bottom) -->
-        <div class="social-features">
-            <div class="features-grid">
-                {% for feature in homepage.social_proof_section.features %}
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        {% if feature.icon == "compass" %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-                        {% elsif feature.icon == "handshake" %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg>
-                        {% elsif feature.icon == "heart" %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-                        {% elsif feature.icon == "shield" %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
-                        {% endif %}
-                    </div>
-                    <div class="feature-text">
-                        <h4 class="feature-title">{{ feature.title }}</h4>
-                        <p class="feature-desc">{{ feature.description }}</p>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
 .social-section {
     background-color: var(--color-white);
     padding: var(--space-12) 0;
@@ -297,4 +270,3 @@
         height: 20px;
     }
 }
-</style>

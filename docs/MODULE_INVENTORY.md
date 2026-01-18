@@ -23,7 +23,7 @@
 | 9 | `location.liquid` | 103 | `src/_includes/modules/location/` |
 | 10 | `trip-length.liquid` | 119 | `src/_includes/modules/trip-length/` |
 | 11 | `inclusions.liquid` | 52 | `src/_includes/modules/inclusions/` |
-| 12 | `social-proof-section.liquid` | 300 | `src/_includes/` |
+| 12 | `social-proof.liquid` | 72 | `src/_includes/modules/social-proof/` |
 | 13 | `faq-section.liquid` | 339 | `src/_includes/` |
 | 14 | `inquiry-form-section.liquid` | 836 | `src/_includes/` |
 | 15 | `availability-section.liquid` | 226 | `src/_includes/` |
@@ -74,7 +74,7 @@
 | `location` | `modules/location/location.liquid` | Location info + bento grid | `engine.modules.location` | ✅ Yes |
 | `trip_length` | `modules/trip-length/trip-length.liquid` | Duration/package selector | `engine.modules.trip_length` | ✅ Yes |
 | `inclusions` | `modules/inclusions/inclusions.liquid` | What's included checklist | `engine.modules.inclusions` | ✅ Yes |
-| `social-proof` | `social-proof-section.liquid` | Testimonials | `engine.modules.social-proof` | ❌ No |
+| `social_proof` | `modules/social-proof/social-proof.liquid` | Social proof + features | `engine.modules.social_proof` | ✅ Yes |
 | `faq` | `faq-section.liquid` | FAQ accordion | `engine.modules.faq` | ❌ No |
 | `inquiry` | `inquiry-form-section.liquid` | Multi-step contact form | `engine.modules.inquiry` | ❌ No |
 | `availability` | `availability-section.liquid` | Availability checker | `engine.modules.availability` | ❌ No |
@@ -181,8 +181,8 @@ zunkire-hospitality-website-engine/
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| ✅ Compliant | 10 (Core + hero + trust_strip + inclusions + why + trip_length + experiences + location) | 53% |
-| ❌ Non-compliant | 9 (Remaining modules) | 47% |
+| ✅ Compliant | 11 (Core + hero + trust_strip + inclusions + why + trip_length + experiences + location + social_proof) | 58% |
+| ❌ Non-compliant | 8 (Remaining modules) | 42% |
 
 ---
 
@@ -198,7 +198,7 @@ Based on complexity and dependencies:
 | 4 | `conversion` | Low | CTA block |
 | 5 | `experiences` | Medium | ✅ MIGRATED |
 | 6 | `location` | Medium | ✅ MIGRATED |
-| 7 | `social-proof` | Medium | Carousel/grid |
+| 7 | `social_proof` | Medium | ✅ MIGRATED |
 | 8 | `hero` | HIGH | ✅ MIGRATED |
 | 9 | `trip_length` | Medium | ✅ MIGRATED |
 | 10 | `faq` | Medium | Accordion JS |

@@ -1,0 +1,121 @@
+{%- comment -%}
+  MODULE: faq
+  PURPOSE: FAQ accordion with category filters and search
+  ACTIVATION: site.engine.modules.faq
+  DATA SOURCE: homepage.faq_section
+  COMPLEXITY: MEDIUM (has JS for accordion/filter/search)
+  RISK: LOW
+{%- endcomment -%}
+
+{%- if site.engine.modules.faq
+  and homepage.faq_section
+  and homepage.faq_section.faqs
+  and homepage.faq_section.faqs.size > 0
+-%}
+<section class="faq-section" id="faq">
+    <div class="faq-container">
+        <div class="faq-header">
+            <h2 class="faq-title">{{ homepage.faq_section.headline }}</h2>
+        </div>
+
+        <div class="faq-filters">
+            <div class="faq-categories">
+                {% for category in homepage.faq_section.categories %}
+                <button class="faq-category-btn{% if forloop.first %} active{% endif %}" data-category="{{ category }}">
+                    {{ category }}
+                </button>
+                {% endfor %}
+            </div>
+            <div class="faq-search">
+                <input type="text" class="faq-search-input" placeholder="Search Your Question">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+        </div>
+
+        <div class="faq-list">
+            {% for faq in homepage.faq_section.faqs %}
+            <div class="faq-item" data-category="{{ faq.category }}">
+                <button class="faq-question" aria-expanded="false">
+                    <span class="faq-question-text">{{ forloop.index }}. {{ faq.question }}</span>
+                    <span class="faq-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </span>
+                </button>
+                <div class="faq-answer">
+                    <p>{{ faq.answer }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    const categoryBtns = document.querySelectorAll('.faq-category-btn');
+    const searchInput = document.querySelector('.faq-search-input');
+
+    let currentCategory = 'All';
+    let searchTerm = '';
+
+    // Accordion toggle
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Close all other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Toggle current item
+            item.classList.toggle('active');
+            question.setAttribute('aria-expanded', !isActive);
+        });
+    });
+
+    // Filter function
+    function filterFAQs() {
+        faqItems.forEach(item => {
+            const category = item.dataset.category;
+            const questionText = item.querySelector('.faq-question-text').textContent.toLowerCase();
+            const answerText = item.querySelector('.faq-answer p').textContent.toLowerCase();
+
+            const matchesCategory = currentCategory === 'All' || category === currentCategory;
+            const matchesSearch = searchTerm === '' ||
+                questionText.includes(searchTerm) ||
+                answerText.includes(searchTerm);
+
+            if (matchesCategory && matchesSearch) {
+                item.classList.remove('hidden');
+            } else {
+                item.classList.add('hidden');
+                item.classList.remove('active');
+            }
+        });
+    }
+
+    // Category filter buttons
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = btn.dataset.category;
+            filterFAQs();
+        });
+    });
+
+    // Search input
+    searchInput.addEventListener('input', (e) => {
+        searchTerm = e.target.value.toLowerCase();
+        filterFAQs();
+    });
+});
+</script>
+{%- endif -%}

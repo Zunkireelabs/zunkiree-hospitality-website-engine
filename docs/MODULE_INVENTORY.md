@@ -25,7 +25,7 @@
 | 11 | `inclusions.liquid` | 52 | `src/_includes/modules/inclusions/` |
 | 12 | `social-proof.liquid` | 72 | `src/_includes/modules/social-proof/` |
 | 13 | `faq-section.liquid` | 339 | `src/_includes/` |
-| 14 | `inquiry-form-section.liquid` | 836 | `src/_includes/` |
+| 14 | `inquiry-form.liquid` | 270 | `src/_includes/modules/inquiry-form/` |
 | 15 | `availability-section.liquid` | 226 | `src/_includes/` |
 | 16 | `conversion.liquid` | 49 | `src/_includes/modules/conversion/` |
 | 17 | `video-showcase-section.liquid` | 172 | `src/_includes/` |
@@ -76,7 +76,7 @@
 | `inclusions` | `modules/inclusions/inclusions.liquid` | What's included checklist | `engine.modules.inclusions` | ✅ Yes |
 | `social_proof` | `modules/social-proof/social-proof.liquid` | Social proof + features | `engine.modules.social_proof` | ✅ Yes |
 | `faq` | `faq-section.liquid` | FAQ accordion | `engine.modules.faq` | ❌ No |
-| `inquiry` | `inquiry-form-section.liquid` | Multi-step contact form | `engine.modules.inquiry` | ❌ No |
+| `inquiry_form` | `modules/inquiry-form/inquiry-form.liquid` | Multi-step contact form | `engine.modules.inquiry_form` | ✅ Yes |
 | `availability` | `availability-section.liquid` | Availability checker | `engine.modules.availability` | ❌ No |
 | `conversion` | `modules/conversion/conversion.liquid` | CTA blocks | `engine.modules.conversion` | ✅ Yes |
 | `video` | `video-showcase-section.liquid` | Video player section | `engine.modules.video` | ❌ No |
@@ -181,8 +181,8 @@ zunkire-hospitality-website-engine/
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| ✅ Compliant | 12 (Core + hero + trust_strip + inclusions + why + trip_length + experiences + location + social_proof + conversion) | 63% |
-| ❌ Non-compliant | 7 (Remaining modules) | 37% |
+| ✅ Compliant | 13 (Core + hero + trust_strip + inclusions + why + trip_length + experiences + location + social_proof + conversion + inquiry_form) | 68% |
+| ❌ Non-compliant | 6 (Remaining modules) | 32% |
 
 ---
 
@@ -204,7 +204,7 @@ Based on complexity and dependencies:
 | 10 | `faq` | Medium | Accordion JS |
 | 11 | `video` | High | HLS, sub-components |
 | 12 | `availability` | High | Interactive |
-| 13 | `inquiry` | High | Multi-step form, validation |
+| 13 | `inquiry_form` | High | ✅ MIGRATED |
 | 14 | `why-lapland` | Decision | May merge with `why` or deprecate |
 
 ---

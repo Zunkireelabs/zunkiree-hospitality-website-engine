@@ -1,0 +1,588 @@
+/**
+ * MODULE: inquiry-form
+ * PURPOSE: Multi-step inquiry form with progress tracking, traveler counters, and validation
+ * COMPLEXITY: HIGH
+ *
+ * TECHNICAL DEBT (Phase 1.5):
+ * The following hardcoded values are accepted technical debt
+ * and will be migrated to design tokens in Phase 2:
+ *
+ * | Value                      | Usage                  | Future Token              |
+ * |----------------------------|------------------------|---------------------------|
+ * | 2.5rem                     | Headline desktop       | --text-3xl                |
+ * | 2rem                       | Headline mobile        | --text-2xl                |
+ * | 1.75rem                    | Success headline       | --text-xl                 |
+ * | 1.25rem                    | Step question          | --text-lg                 |
+ * | 750px                      | Container max-width    | --container-sm            |
+ * | 120px                      | Option card min-height | --card-height-sm          |
+ * | 80px                       | Success icon size      | --icon-size-xl            |
+ * | 36px                       | Counter button size    | --button-size-sm          |
+ * | 20px                       | Radio button size      | --radio-size              |
+ * | 10px                       | Radio inner dot        | --radio-dot-size          |
+ * | 6px                        | Progress bar height    | --progress-height         |
+ * | #FDF8F3                    | Section background     | --color-warm-bg           |
+ * | #E5E7EB                    | Border color           | --color-gray-200          |
+ * | #D1D5DB                    | Border hover           | --color-gray-300          |
+ * | #F9FAFB                    | Travelers bg           | --color-gray-50           |
+ * | #F3F4F6                    | Counter hover bg       | --color-gray-100          |
+ * | #FAFAFA                    | Selected option bg     | --color-gray-50           |
+ * | #9CA3AF                    | Placeholder color      | --color-gray-400          |
+ * | #6B7280                    | Option desc color      | --color-gray-500          |
+ * | #10B981                    | Success/progress color | --color-success           |
+ * | #34D399                    | Progress gradient end  | --color-success-light     |
+ * | #ECFDF5                    | Success icon bg        | --color-success-bg        |
+ * | black                      | Primary text/buttons   | --color-text-primary      |
+ * | white                      | Button text            | --color-white             |
+ * | #1a1a1a                    | Button hover           | --color-gray-900          |
+ * | rgba(0,0,0,0.08)           | Card shadow            | --shadow-sm               |
+ * | rgba(0,0,0,0.05)           | Input focus shadow     | --shadow-focus            |
+ */
+
+.inquiry-section {
+    background-color: #FDF8F3;
+    padding: var(--space-16) 0;
+}
+
+.inquiry-container {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+}
+
+.inquiry-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.inquiry-headline {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: black;
+    margin-bottom: var(--space-2);
+    line-height: 1.2;
+}
+
+.inquiry-intro {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+}
+
+.inquiry-card {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Progress Bar */
+.inquiry-progress {
+    margin-bottom: var(--space-8);
+}
+
+.progress-bar {
+    height: 6px;
+    background: #E5E7EB;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: var(--space-2);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10B981, #34D399);
+    border-radius: 3px;
+    width: 33.33%;
+    transition: width 0.4s ease;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--text-sm);
+}
+
+.progress-percent {
+    color: #10B981;
+    font-weight: 600;
+}
+
+.progress-step {
+    color: var(--color-text-secondary);
+}
+
+/* Inquiry Step Container */
+.inquiry-section .inquiry-step {
+    display: none;
+}
+
+.inquiry-section .inquiry-step.active {
+    display: block;
+}
+
+
+/* Step Question */
+.inquiry-section .step-question {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    color: #000000 !important;
+    margin-bottom: 1.5rem !important;
+    text-align: center !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Option Cards */
+.inquiry-section .option-cards {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1rem !important;
+    margin-bottom: 1.5rem !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: stretch;
+}
+
+.inquiry-section .option-card {
+    display: flex !important;
+    position: relative !important;
+    cursor: pointer !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: 100%;
+}
+
+.inquiry-section .option-card input[type="radio"] {
+    position: absolute !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+.inquiry-section .option-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 1.25rem 1rem !important;
+    border: 2px solid #E5E7EB !important;
+    border-radius: 12px !important;
+    transition: all 0.2s ease !important;
+    background: #FFFFFF !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    min-height: 120px;
+}
+
+.inquiry-section .option-card input:checked + .option-content {
+    border-color: black !important;
+    background: #FAFAFA !important;
+}
+
+.inquiry-section .option-label {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: #000000 !important;
+    margin-bottom: 0.25rem !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
+.inquiry-section .option-desc {
+    font-size: 0.875rem !important;
+    color: #6B7280 !important;
+    line-height: 1.4 !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
+.inquiry-section .option-radio {
+    width: 20px !important;
+    height: 20px !important;
+    border: 2px solid #D1D5DB !important;
+    border-radius: 50% !important;
+    margin-bottom: 0.75rem !important;
+    position: relative !important;
+    display: block !important;
+}
+
+.option-card:hover .option-content {
+    border-color: #9CA3AF;
+}
+
+.option-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #D1D5DB;
+    border-radius: 50%;
+    margin-bottom: var(--space-3);
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.option-card input:checked + .option-content .option-radio {
+    border-color: black;
+}
+
+.option-card input:checked + .option-content .option-radio::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: black;
+    border-radius: 50%;
+}
+
+.option-label {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: black;
+    margin-bottom: var(--space-1);
+}
+
+.option-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+}
+
+/* Travelers Group */
+.travelers-group {
+    background: #F9FAFB;
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.traveler-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) 0;
+}
+
+.traveler-row:not(:last-child) {
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.traveler-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.traveler-label {
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: black;
+}
+
+.traveler-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+}
+
+.traveler-counter {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.counter-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #E5E7EB;
+    border-radius: 50%;
+    background: var(--color-white);
+    color: black;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.counter-btn:hover {
+    background: #F3F4F6;
+    border-color: #D1D5DB;
+}
+
+.counter-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.counter-value {
+    width: 40px;
+    text-align: center;
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: black;
+    border: none;
+    background: transparent;
+    -moz-appearance: textfield;
+}
+
+.counter-value::-webkit-outer-spin-button,
+.counter-value::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Contact Fields */
+.contact-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: black;
+    margin-bottom: var(--space-2);
+}
+
+.form-field input {
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid #E5E7EB;
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.form-field input:focus {
+    outline: none;
+    border-color: black;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-field input::placeholder {
+    color: #9CA3AF;
+}
+
+/* Navigation */
+.inquiry-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--space-6);
+    padding-top: var(--space-6);
+    border-top: 1px solid #E5E7EB;
+}
+
+.btn-back {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: var(--text-base);
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.btn-back:hover {
+    color: black;
+}
+
+.btn-next,
+.btn-submit {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    background: black;
+    border: none;
+    border-radius: var(--radius-full);
+    color: white;
+    font-size: var(--text-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-next:hover,
+.btn-submit:hover {
+    background: #1a1a1a;
+    transform: translateY(-1px);
+}
+
+.btn-next svg,
+.btn-submit svg {
+    transition: transform 0.2s ease;
+}
+
+.btn-next:hover svg {
+    transform: translateX(3px);
+}
+
+.btn-submit:hover svg {
+    transform: translateX(3px);
+}
+
+/* Trust Badges */
+.inquiry-trust {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-8);
+    margin-top: var(--space-6);
+    flex-wrap: wrap;
+}
+
+.trust-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.trust-badge svg {
+    color: #10B981;
+}
+
+.trust-badge span {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .inquiry-section {
+        padding: var(--space-12) 0;
+    }
+
+    .inquiry-headline {
+        font-size: 2rem;
+    }
+
+    .inquiry-card {
+        padding: var(--space-6);
+    }
+
+    .option-cards {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+
+    .option-content {
+        flex-direction: row;
+        justify-content: flex-start;
+        text-align: left;
+        padding: var(--space-4);
+        gap: var(--space-3);
+    }
+
+    .option-radio {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .option-label {
+        margin-bottom: 0;
+    }
+
+    .option-desc {
+        display: none;
+    }
+
+    .contact-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .inquiry-trust {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-3);
+    }
+
+    .inquiry-nav {
+        flex-direction: column-reverse;
+        gap: var(--space-3);
+    }
+
+    .btn-next,
+    .btn-submit {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn-back {
+        visibility: visible !important;
+    }
+}
+
+/* Success State */
+.inquiry-success {
+    text-align: center;
+    padding: var(--space-8) var(--space-4);
+}
+
+.success-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: #ECFDF5;
+    border-radius: 50%;
+    margin-bottom: var(--space-6);
+}
+
+.success-icon svg {
+    color: #10B981;
+}
+
+.success-headline {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: black;
+    margin-bottom: var(--space-3);
+}
+
+.success-message {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2);
+    line-height: 1.6;
+}
+
+.success-sub {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-6);
+}
+
+.success-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    background: black;
+    border: none;
+    border-radius: var(--radius-full);
+    color: white;
+    font-size: var(--text-base);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.success-cta:hover {
+    background: #1a1a1a;
+    color: white;
+    transform: translateY(-1px);
+}

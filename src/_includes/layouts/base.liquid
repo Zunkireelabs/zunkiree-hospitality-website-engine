@@ -63,6 +63,9 @@
     {%- if site.engine.modules.conversion -%}
     <link rel="stylesheet" href="/assets/css/modules/conversion.css">
     {%- endif -%}
+    {%- if site.engine.modules.inquiry_form -%}
+    <link rel="stylesheet" href="/assets/css/modules/inquiry-form.css">
+    {%- endif -%}
 
     {% if hasHlsVideos %}
     {% include "hls-init.liquid" %}

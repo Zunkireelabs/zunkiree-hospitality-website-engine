@@ -54,6 +54,9 @@
     {%- if site.engine.modules.experiences -%}
     <link rel="stylesheet" href="/assets/css/modules/experiences.css">
     {%- endif -%}
+    {%- if site.engine.modules.location -%}
+    <link rel="stylesheet" href="/assets/css/modules/location.css">
+    {%- endif -%}
 
     {% if hasHlsVideos %}
     {% include "hls-init.liquid" %}

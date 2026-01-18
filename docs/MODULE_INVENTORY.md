@@ -20,7 +20,7 @@
 | 6 | `experiences.liquid` | 97 | `src/_includes/modules/experiences/` |
 | 7 | `why.liquid` | 48 | `src/_includes/modules/why/` |
 | 8 | `why-lapland-section.liquid` | 151 | `src/_includes/` |
-| 9 | `location-section.liquid` | 332 | `src/_includes/` |
+| 9 | `location.liquid` | 103 | `src/_includes/modules/location/` |
 | 10 | `trip-length.liquid` | 119 | `src/_includes/modules/trip-length/` |
 | 11 | `inclusions.liquid` | 52 | `src/_includes/modules/inclusions/` |
 | 12 | `social-proof-section.liquid` | 300 | `src/_includes/` |
@@ -71,7 +71,7 @@
 | `experiences` | `modules/experiences/experiences.liquid` | Services/amenities carousel | `engine.modules.experiences` | ✅ Yes |
 | `why` | `modules/why/why.liquid` | Benefits/features highlight | `engine.modules.why` | ✅ Yes |
 | `why-lapland` | `why-lapland-section.liquid` | Destination selling points | `engine.modules.why-lapland` | ❌ No |
-| `location` | `location-section.liquid` | Location info + map | `engine.modules.location` | ❌ No |
+| `location` | `modules/location/location.liquid` | Location info + bento grid | `engine.modules.location` | ✅ Yes |
 | `trip_length` | `modules/trip-length/trip-length.liquid` | Duration/package selector | `engine.modules.trip_length` | ✅ Yes |
 | `inclusions` | `modules/inclusions/inclusions.liquid` | What's included checklist | `engine.modules.inclusions` | ✅ Yes |
 | `social-proof` | `social-proof-section.liquid` | Testimonials | `engine.modules.social-proof` | ❌ No |
@@ -181,8 +181,8 @@ zunkire-hospitality-website-engine/
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| ✅ Compliant | 9 (Core + hero + trust_strip + inclusions + why + trip_length + experiences) | 47% |
-| ❌ Non-compliant | 10 (Remaining modules) | 53% |
+| ✅ Compliant | 10 (Core + hero + trust_strip + inclusions + why + trip_length + experiences + location) | 53% |
+| ❌ Non-compliant | 9 (Remaining modules) | 47% |
 
 ---
 
@@ -197,7 +197,7 @@ Based on complexity and dependencies:
 | 3 | `inclusions` | Low | ✅ MIGRATED |
 | 4 | `conversion` | Low | CTA block |
 | 5 | `experiences` | Medium | ✅ MIGRATED |
-| 6 | `location` | Medium | Map integration |
+| 6 | `location` | Medium | ✅ MIGRATED |
 | 7 | `social-proof` | Medium | Carousel/grid |
 | 8 | `hero` | HIGH | ✅ MIGRATED |
 | 9 | `trip_length` | Medium | ✅ MIGRATED |

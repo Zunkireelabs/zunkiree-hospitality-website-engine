@@ -1,0 +1,272 @@
+/**
+ * MODULE: location
+ * PURPOSE: Location info with bento image grid and features
+ * COMPLEXITY: MEDIUM
+ *
+ * TECHNICAL DEBT (Phase 1.5):
+ * The following hardcoded values are accepted technical debt
+ * and will be migrated to design tokens in Phase 2:
+ *
+ * | Value                    | Usage                     | Future Token              |
+ * |--------------------------|---------------------------|---------------------------|
+ * | 2.5rem                   | Desktop headline          | --text-3xl                |
+ * | 2rem                     | Mobile headline           | --text-2xl                |
+ * | 400px                    | Bento grid height desktop | --bento-height-lg         |
+ * | 250px                    | Bento grid height tablet  | --bento-height-md         |
+ * | 200px                    | Bento left/right mobile   | --bento-height-sm         |
+ * | 150px                    | Bento middle mobile       | --bento-height-xs         |
+ * | 48px                     | Stat icon size            | --icon-size-lg            |
+ * | black                    | Title color               | --color-text-primary      |
+ * | rgba(135,28,83,0.08)     | Stat icon background      | --color-primary-alpha-08  |
+ * | 1fr 1fr 1.5fr            | Bento grid columns        | Custom layout             |
+ */
+
+.location-section {
+    background-color: var(--color-white);
+    padding: var(--space-12) 0;
+}
+
+.location-container {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 0 var(--space-8);
+}
+
+/* Header */
+.location-header {
+    margin-bottom: var(--space-8);
+}
+
+.location-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: black;
+    margin-bottom: var(--space-3);
+    font-style: normal;
+    line-height: 1.2;
+}
+
+.location-intro {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0;
+}
+
+/* Bento Grid */
+.location-bento {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.5fr;
+    grid-template-rows: 400px;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+}
+
+.bento-left {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 400px;
+}
+
+.bento-right {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 400px;
+}
+
+.bento-left picture,
+.bento-right picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.bento-left img,
+.bento-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.bento-middle {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    height: 400px;
+}
+
+.bento-middle-top,
+.bento-middle-bottom {
+    flex: 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    min-height: 0;
+}
+
+.bento-middle-top picture,
+.bento-middle-bottom picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.bento-middle-top img,
+.bento-middle-bottom img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Features */
+.location-features {
+    margin-bottom: var(--space-6);
+}
+
+.location-features-title {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.location-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.location-features-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-2) 0;
+    color: var(--color-text-primary);
+    font-size: var(--text-base);
+    line-height: 1.5;
+}
+
+.location-features-list li svg {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Stats */
+.location-stats {
+    display: flex;
+    gap: var(--space-8);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(135, 28, 83, 0.08);
+    border-radius: 50%;
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--color-text-primary);
+    line-height: 1.2;
+}
+
+.stat-label {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .location-bento {
+        grid-template-columns: 1fr 1fr;
+        height: auto;
+    }
+
+    .bento-left {
+        height: 250px;
+    }
+
+    .bento-middle {
+        height: 250px;
+    }
+
+    .bento-right {
+        grid-column: span 2;
+        height: 250px;
+    }
+
+    .location-stats {
+        flex-wrap: wrap;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .location-section {
+        padding: var(--space-10) 0;
+    }
+
+    .location-container {
+        padding: 0 var(--space-4);
+    }
+
+    .location-title {
+        font-size: 2rem;
+    }
+
+    .location-intro {
+        font-size: var(--text-base);
+    }
+
+    .location-bento {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+
+    .bento-left,
+    .bento-right {
+        height: 200px;
+    }
+
+    .bento-middle {
+        flex-direction: row;
+        height: 150px;
+    }
+
+    .bento-right {
+        grid-column: span 1;
+    }
+
+    .location-stats {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .stat-item {
+        padding: var(--space-3);
+        background-color: var(--color-frost);
+        border-radius: var(--radius-md);
+    }
+}

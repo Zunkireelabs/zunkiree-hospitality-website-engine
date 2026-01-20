@@ -262,37 +262,99 @@
         updateCounterButtons(input.name);
     });
 
+    // Supabase configuration
+    const SUPABASE_URL = '{{ inquiry.supabase_url | default: "https://cghiyuatdlkunxlxdiso.supabase.co" }}';
+    const SUPABASE_ANON_KEY = '{{ inquiry.supabase_anon_key | default: "sb_publishable_sawp3WuLP1-8plVfiHihhw_jyvWpz3l" }}';
+    const HOTEL_ID = '{{ inquiry.hotel_id | default: "11111111-1111-1111-1111-111111111111" }}';
+
+    // Error display helper
+    function showError(message) {
+        let errorDiv = form.querySelector('.inquiry-error');
+        if (!errorDiv) {
+            errorDiv = document.createElement('div');
+            errorDiv.className = 'inquiry-error';
+            errorDiv.style.cssText = 'background:#fef2f2;color:#dc2626;padding:1rem;border-radius:8px;margin-bottom:1rem;font-size:0.875rem;';
+            form.insertBefore(errorDiv, form.firstChild);
+        }
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+    }
+
+    function hideError() {
+        const errorDiv = form.querySelector('.inquiry-error');
+        if (errorDiv) errorDiv.style.display = 'none';
+    }
+
     // Form submission handler
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
+        hideError();
 
         // Collect form data
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
 
-        // Log form data (for debugging - in production, send to server)
-        console.log('Form submitted:', data);
+        // Disable submit button during request
+        btnSubmit.disabled = true;
+        btnSubmit.querySelector('span').textContent = 'Submitting...';
 
-        // Hide the form and show success state
-        const inquiryCard = document.querySelector('.inquiry-card');
-        const successDiv = document.querySelector('.inquiry-success');
+        // Map form data to inquiries table schema
+        const inquiry = {
+            hotel_id: HOTEL_ID,
+            name: data.name || '',
+            email: data.email || '',
+            phone: data.phone || null,
+            guests: {
+                adults: parseInt(data.adults) || 2,
+                children: parseInt(data.children) || 0
+            },
+            message: data.message || null,
+            source_data: {
+                trip_length: data.trip_length || null,
+                month: data.month || null,
+                form_version: '1.0',
+                submitted_at: new Date().toISOString()
+            }
+        };
 
-        if (inquiryCard && successDiv) {
-            form.style.display = 'none';
-            successDiv.style.display = 'block';
+        console.log('Submitting inquiry:', inquiry);
 
-            // Update progress to 100%
-            progressFill.style.width = '100%';
-            progressPercent.textContent = '100%';
-            progressStep.textContent = 'Complete!';
+        try {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/inquiries`, {
+                method: 'POST',
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify(inquiry)
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Supabase error:', response.status, errorText);
+                throw new Error('Failed to submit inquiry. Please try again.');
+            }
+
+            console.log('Inquiry submitted successfully');
+
+            // Show success state
+            const successDiv = document.querySelector('.inquiry-success');
+            if (successDiv) {
+                form.style.display = 'none';
+                successDiv.style.display = 'block';
+                progressFill.style.width = '100%';
+                progressPercent.textContent = '100%';
+                progressStep.textContent = 'Complete!';
+            }
+
+        } catch (error) {
+            console.error('Submission error:', error);
+            showError(error.message || 'Something went wrong. Please try again.');
+            btnSubmit.disabled = false;
+            btnSubmit.querySelector('span').textContent = '{{ inquiry.buttons.submit }}';
         }
-
-        // Optional: Send data to server via fetch
-        // fetch('/api/quote-request', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(data)
-        // });
     });
 
     // Initialize

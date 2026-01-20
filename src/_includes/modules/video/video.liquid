@@ -1,0 +1,91 @@
+{%- comment -%}
+  MODULE: video
+  PURPOSE: Video showcase section with HLS playback
+  ACTIVATION: site.engine.modules.video
+  DATA SOURCE: media.showcase['lapland-experience']
+  COMPLEXITY: MEDIUM (has JS for HLS init and play controls)
+  RISK: LOW
+  TECHNICAL DEBT: Hardcoded title "Experience Lapland" and data key - Phase 2 candidate
+{%- endcomment -%}
+
+{%- if site.engine.modules.video
+  and media.showcase['lapland-experience']
+-%}
+<section class="video-showcase-section" id="video">
+    <div class="video-showcase-container">
+        <h2 class="video-showcase-title">Experience Lapland</h2>
+
+        <div class="video-wrapper">
+            <video
+                id="showcase-video"
+                class="showcase-video"
+                poster="{{ media.showcase['lapland-experience'].thumbnail }}"
+                playsinline
+                preload="metadata"
+            >
+                <source src="{{ media.showcase['lapland-experience'].hls }}" type="application/x-mpegURL">
+            </video>
+
+            <button class="video-play-btn" aria-label="Play video">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('showcase-video');
+    const playBtn = document.querySelector('.video-play-btn');
+
+    if (!video || !playBtn) return;
+
+    // Initialize HLS if needed
+    function initVideo() {
+        const hlsSource = video.querySelector('source[type="application/x-mpegURL"]');
+        if (!hlsSource) return;
+
+        const hlsUrl = hlsSource.src;
+
+        if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            // Safari - native HLS support
+            video.src = hlsUrl;
+        } else if (typeof Hls !== 'undefined' && Hls.isSupported()) {
+            // Other browsers - use HLS.js
+            const hls = new Hls({
+                enableWorker: true,
+                startLevel: -1,
+                capLevelToPlayerSize: true
+            });
+            hls.loadSource(hlsUrl);
+            hls.attachMedia(video);
+        }
+    }
+
+    // Play button click
+    playBtn.addEventListener('click', function() {
+        initVideo();
+        video.controls = true;
+        video.muted = false;
+        video.play();
+        playBtn.classList.add('hidden');
+    });
+
+    // Show play button when video ends or pauses
+    video.addEventListener('ended', function() {
+        playBtn.classList.remove('hidden');
+        video.controls = false;
+    });
+
+    video.addEventListener('pause', function() {
+        if (video.currentTime > 0 && !video.ended) {
+            playBtn.classList.remove('hidden');
+        }
+    });
+
+    video.addEventListener('play', function() {
+        playBtn.classList.add('hidden');
+    });
+});
+</script>
+{%- endif -%}

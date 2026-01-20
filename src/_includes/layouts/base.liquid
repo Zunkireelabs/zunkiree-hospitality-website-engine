@@ -72,6 +72,9 @@
     {%- if site.engine.modules.faq -%}
     <link rel="stylesheet" href="/assets/css/modules/faq.css">
     {%- endif -%}
+    {%- if site.engine.modules.video -%}
+    <link rel="stylesheet" href="/assets/css/modules/video.css">
+    {%- endif -%}
 
     {% if hasHlsVideos %}
     {% include "hls-init.liquid" %}
